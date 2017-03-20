@@ -1,0 +1,29 @@
+body {
+  margin-left: 47px;
+}
+
+h1 {
+  color: blue;
+}
+
+h2 {
+  color: orange;
+}
+
+.square {
+  list-style-type: square;
+  color: blue;
+}
+
+li .disc {
+  list-style-type: disc;
+}
+
+.apple {
+  color: red;
+}
+
+.square ul,
+.square ol {
+  color: black;
+}

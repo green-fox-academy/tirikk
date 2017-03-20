@@ -1,0 +1,10 @@
+body {
+  font-size: 18px;
+  margin-left: 47px;
+}
+
+p {
+  width: 295px;
+  padding: 0 0 0 21px;
+  border-left: 2px solid black;
+}

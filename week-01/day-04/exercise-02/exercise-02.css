@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  width: 385px;
+}
+
+article {
+  margin: 2px 3px 3px 2px;
+  border: solid 16px #4285f4;
+}
+
+div {
+  font-family: 'Roboto', sans-serif;
+  height: 128px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 128px;
+  color: #fff;
+  font-size: 36px;
+  margin: 0;
+}
+
+.north {
+  background-color: #e67676;
+}
+
+.east {
+  background-color: #f2f062;
+}
+
+.south {
+  background-color: #a9e6e6;
+}
+
+.west {
+  background-color: #7692e4;
+}
