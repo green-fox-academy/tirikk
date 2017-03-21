@@ -6,7 +6,7 @@ public class SecondsInADay {
 
     int totalSeconds = 24*3600;
     int totalPassed = currentHours*3600+currentMinutes*60+currentSeconds;
-    
+
     System.out.println(totalSeconds-totalPassed);
 
 
