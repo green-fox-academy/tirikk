@@ -10,9 +10,12 @@ public class DrawSquare {
 
     for (int i = 1; i <= userInput1; i++) {
       if (i == 1 || i == userInput1) {
-        System.out.println("%%%%%");
+        String signs = String.join("", Collections.nCopies(userInput1, "%"));
+        System.out.println(signs);
       } else {
-        System.out.println("%   %");
+        int spc = userInput1 - 2;
+        String spaces = String.join("", Collections.nCopies(spc, " "));
+        System.out.println("%" + spaces + "%");
       }
     }
   }
