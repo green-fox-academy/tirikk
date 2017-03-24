@@ -11,11 +11,7 @@ public class PalindromeSearch {
   }
 
   public static ArrayList isPalindrome(String input) {
-    String inputSpc = input.replaceAll(" ", "");
-    if (reverse(inputSpc).equals(toList(inputSpc)) && input.contains(" ")) {
-      System.out.println("\nThe whole string is a palindrome. Additionally:");
-    }
-
+    checkWhole(input);
     ArrayList<Character> list = toList(input);
     ArrayList<String> listOut = new ArrayList<>();
 
@@ -30,6 +26,13 @@ public class PalindromeSearch {
       }
     }
     return listOut;
+  }
+
+  public static void checkWhole(String input) {
+    String inputSpc = input.replaceAll(" ", "");
+    if (reverse(inputSpc).equals(toList(inputSpc)) && input.contains(" ")) {
+      System.out.println("\nThe whole string is a palindrome. Additionally:");
+    }
   }
 
   public static ArrayList toList(String input) {
