@@ -14,7 +14,7 @@ public class doubled {
       Files.write(decryptedPath, decrypt(lines));
       List<String> decryptedLines = Files.readAllLines(decryptedPath);
       display(decryptedLines);
-      
+
     } catch (Exception e) {
       System.out.println("Uh-oh, an error happend: " + e.getClass());
     }
