@@ -17,7 +17,7 @@ public class SuperHexagon {
           drawHexagon(graphics, j * 30, i * (diagonal / 2));
         }
       } else if (i < 11 && i % 2 == 0) {
-        for (int j = -4; j < 3; j += 2) {
+        for (int j = -4; j < 4; j += 2) {
           drawHexagon(graphics, j * 30, i * (diagonal / 2));
         }
       } else if (i < 11 && i % 2 != 0) {
