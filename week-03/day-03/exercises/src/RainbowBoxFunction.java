@@ -21,21 +21,13 @@ public class RainbowBoxFunction {
     colors.add(new Color(075, 000, 130));
     colors.add(new Color(238, 130, 238));
     for (int i = 6; i >= 0; i--) {
-<<<<<<< HEAD
       squareDrawer(graphics, colors.get(i), (i + 1) * 40);
-=======
-      squareDrawer(graphics, colors.get(i), (i + 1) * 10);
->>>>>>> 12ecc92fa067f61a86f91a673c9dee2ac30c9f05
     }
   }
 
   public static void squareDrawer(Graphics graphics, Color color, int i) {
     graphics.setColor(color);
-<<<<<<< HEAD
     graphics.fillRect(150 - i / 2,150 - i / 2, i, i);
-=======
-    graphics.drawRect(i * 2,i * 3, i, i);
->>>>>>> 12ecc92fa067f61a86f91a673c9dee2ac30c9f05
   }
 
   //    Don't touch the code below
