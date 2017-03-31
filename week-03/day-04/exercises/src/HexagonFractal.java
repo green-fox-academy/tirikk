@@ -8,7 +8,6 @@ public class HexagonFractal {
 
   public static void mainDraw(Graphics graphics) {
     fractalHexagon(graphics, 5, 200, 50, 200);
-
   }
 
   public static void fractalHexagon(Graphics graphics, int n, int x, int y, int size) {
