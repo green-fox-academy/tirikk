@@ -7,7 +7,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class Circles {
 
   public static void mainDraw(Graphics graphics) {
-    timesFour(graphics, 4, 50, 50, 500);
+    timesFour(graphics, 4, 50, 30, 500);
   }
 
   public static void timesFour(Graphics g, int n, int x, int y, int size) {

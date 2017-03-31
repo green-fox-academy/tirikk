@@ -7,7 +7,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class Hexagon {
 
   public static void mainDraw(Graphics graphics) {
-    fractalHexagon(graphics, 5, 200, 50, 200);
+    fractalHexagon(graphics, 5, 150, 50, 200);
 
   }
 
@@ -38,7 +38,7 @@ public class Hexagon {
   //    Don't touch the code below
   public static void main(String[] args) {
     JFrame jFrame = new JFrame("Drawing");
-    jFrame.setSize(new Dimension(800, 800));
+    jFrame.setSize(new Dimension(500, 500));
     jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     jFrame.add(new ImagePanel());
     jFrame.setLocationRelativeTo(null);

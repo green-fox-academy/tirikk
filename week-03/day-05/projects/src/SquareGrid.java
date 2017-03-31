@@ -26,7 +26,7 @@ public class SquareGrid {
   //    Don't touch the code below
   public static void main(String[] args) {
     JFrame jFrame = new JFrame("Drawing");
-    jFrame.setSize(new Dimension(600, 600));
+    jFrame.setSize(new Dimension(550, 550));
     jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     jFrame.add(new ImagePanel());
     jFrame.setLocationRelativeTo(null);
