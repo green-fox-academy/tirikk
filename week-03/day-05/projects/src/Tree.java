@@ -7,7 +7,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class Tree {
 
   public static void mainDraw(Graphics graphics) {
-    tree(graphics, 8,250, 400, 40, -90);
+    tree(graphics, 8, 250, 400, 40, -90);
   }
 
   public static void tree(Graphics g, int n, int x, int y, int length, int angle) {
@@ -24,8 +24,6 @@ public class Tree {
       tree(g, n - 1, endX, endY, 9 * length / 10, angle - 25);
     }
   }
-
-
 
   //    Don't touch the code below
   public static void main(String[] args) {

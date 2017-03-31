@@ -7,19 +7,19 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class SquareGrid {
 
   public static void mainDraw(Graphics graphics) {
-    timesFour(graphics, 3, 150, 150, 200);
+    squareGrid(graphics, 3, 150, 150, 200);
   }
 
-  public static void timesFour(Graphics g, int n, int x, int y, int size) {
+  public static void squareGrid(Graphics g, int n, int x, int y, int size) {
     Graphics2D g2d = (Graphics2D) g;
     g2d.setStroke(new BasicStroke(4 * n));
     g2d.setColor(Color.black);
     g2d.drawRect(x, y, size, size);
     if (n > 0) {
-      timesFour(g, n - 1, x - size / 4, y - size / 4, size / 2);
-      timesFour(g, n - 1, x - size / 4, y + 3 * size / 4, size / 2);
-      timesFour(g, n - 1, x +  3 * size / 4, y - size / 4, size / 2);
-      timesFour(g, n - 1, x + 3 * size / 4, y + 3 * size / 4, size / 2);
+      squareGrid(g, n - 1, x - size / 4, y - size / 4, size / 2);
+      squareGrid(g, n - 1, x - size / 4, y + 3 * size / 4, size / 2);
+      squareGrid(g, n - 1, x +  3 * size / 4, y - size / 4, size / 2);
+      squareGrid(g, n - 1, x + 3 * size / 4, y + 3 * size / 4, size / 2);
     }
   }
 

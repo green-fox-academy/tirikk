@@ -8,7 +8,6 @@ public class Hexagon {
 
   public static void mainDraw(Graphics graphics) {
     fractalHexagon(graphics, 5, 150, 50, 200);
-
   }
 
   public static void fractalHexagon(Graphics graphics, int n, int x, int y, int size) {
@@ -49,6 +48,7 @@ public class Hexagon {
     @Override
     protected void paintComponent(Graphics graphics) {
       super.paintComponent(graphics);
+      this.setBackground(Color.gray);
       mainDraw(graphics);
     }
   }

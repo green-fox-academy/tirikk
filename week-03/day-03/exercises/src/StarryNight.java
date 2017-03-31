@@ -20,7 +20,6 @@ public class StarryNight {
       int Y = (int)(Math.random() * 297);
       drawStars(graphics, X, Y );
     }
-
   }
 
   public static void drawStars(Graphics g, int X, int Y) {
