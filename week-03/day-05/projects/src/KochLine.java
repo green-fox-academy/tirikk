@@ -1,22 +1,29 @@
 import javax.swing.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class KochLine {
 
   public static void mainDraw(Graphics graphics) {
-    double lineStartX = 100;
-    double lineStartY = 200;
-    double lineLength = 400;
-    double lineAngle = 0;
+    int lineStartX = 100;
+    int lineStartY = 200;
+    double lineLength = 405;
+    int lineAngle = 0;
+    double horDiff = lineLength * Math.cos(Math.toRadians(lineAngle));
+    double verDiff = lineLength * Math.sin(Math.toRadians(lineAngle));
 
-    drawInitialLine(graphics, lineStartX, lineStartY, lineLength, lineAngle);
-    kochLine(graphics, 3, lineStartX, lineStartY, lineLength, lineAngle);
+    ArrayList<Point> listOfPoints = new ArrayList<>();
+    listOfPoints.add(new Point(lineStartX, lineStartY));
+    listOfPoints.add(new Point(lineStartX + (int)horDiff, lineStartY + (int)verDiff));
+
+    lineDrawer(graphics, generateList(3, listOfPoints, lineStartX, lineStartY, lineLength, lineAngle));
   }
 
-  public static void kochLine(Graphics g, int n, double x, double y, double length, double angle) {
+  public static ArrayList<Point> generateList(int n, ArrayList<Point> list, int x, int y, double length, int angle) {
+
     double horDiff = length * Math.cos(Math.toRadians(angle));
     double verDiff = length * Math.sin(Math.toRadians(angle));
     double midHorDiff = length / 3 * Math.cos(Math.toRadians(angle - 60));
@@ -28,23 +35,25 @@ public class KochLine {
     double point3X = x + 2 * horDiff / 3;
     double point3Y = y + 2 * verDiff / 3;
 
-    g.drawLine((int) point1X, (int) point1Y, (int) point2X, (int) point2Y);
-    g.drawLine((int) point2X, (int) point2Y, (int) point3X, (int) point3Y);
+    Point initPoint = new Point(x, y);
+    list.add(list.indexOf(initPoint) + 1, new Point((int)point3X, (int)point3Y));
+    list.add(list.indexOf(initPoint) + 1, new Point((int)point2X, (int)point2Y));
+    list.add(list.indexOf(initPoint) + 1, new Point((int)point1X, (int)point1Y));
 
-    if (n > 0) {
-      kochLine(g, n - 1, x, y, length / 3, angle);
-      kochLine(g, n - 1, point3X, point3Y, length / 3, angle);
-      kochLine(g, n - 1, point1X, point1Y, length / 3, angle - 60);
-      kochLine(g, n - 1, point2X, point2Y, length / 3, angle + 60);
+    if (n > 1) {
+      generateList(n - 1, list, x, y, length / 3, angle);
+      generateList(n - 1, list, (int)point3X, (int)point3Y, length / 3, angle);
+      generateList(n - 1, list, (int)point1X, (int)point1Y, length / 3, angle - 60);
+      generateList(n - 1, list, (int)point2X, (int)point2Y, length / 3, angle + 60);
+    }
+    return list;
+  }
+
+  public static void lineDrawer(Graphics g, ArrayList<Point> list) {
+    for (int i = 0; i < list.size() - 1; i++) {
+      g.drawLine((int)list.get(i).getX(), (int)list.get(i).getY(), (int)list.get(i + 1).getX(), (int)list.get(i + 1).getY());
     }
   }
-
-  public static void drawInitialLine(Graphics g, double x, double y, double length, double angle) {
-    double horDiff = length * Math.cos(Math.toRadians(angle));
-    double verDiff = length * Math.sin(Math.toRadians(angle));
-    g.drawLine((int) x, (int) y, (int) (x + horDiff), (int) (y + verDiff));
-  }
-
 
   //    Don't touch the code below
   public static void main(String[] args) {
@@ -60,6 +69,7 @@ public class KochLine {
     @Override
     protected void paintComponent(Graphics graphics) {
       super.paintComponent(graphics);
+      this.setBackground(Color.white);
       mainDraw(graphics);
     }
   }
