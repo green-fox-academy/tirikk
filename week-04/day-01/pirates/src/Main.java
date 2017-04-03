@@ -16,6 +16,6 @@ public class Main {
     norrington.brawl(bootstrapBill);
     bootstrapBill.howsItGoingMate();
     norrington.howsItGoingMate();
-    
+
   }
 }

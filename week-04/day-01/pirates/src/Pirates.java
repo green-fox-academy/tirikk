@@ -5,22 +5,27 @@ public class Pirates {
   boolean parrot = true;
 
   public void drinkSomeRum() {
-    if (alive) {
+    if (alive && awake) {
       intoxication++;
-    } else {
+    } else if (!alive){
       System.out.println("he's dead");
+    } else if (!awake) {
+      System.out.println("he's passed out");
+      awake = true;
     }
   }
 
   public void howsItGoingMate() {
-    if (intoxication < 5 && alive) {
+    if (intoxication < 5 && alive && awake) {
       System.out.println("Pour me anudder");
-    } else if (alive) {
+    } else if (alive && awake) {
       System.out.println("Arghh, I'ma Pirate, How d'ya d'ink its goin?");
       awake = false;
       intoxication = 0;
-    } else {
+    } else  if (!alive) {
       System.out.println("he's dead");
+    } else if (!awake) {
+      System.out.println("he's passed out");
     }
   }
 
