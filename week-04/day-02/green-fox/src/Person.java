@@ -3,6 +3,18 @@ public class Person {
   private int age;
   private String gender;
 
+  public String getName() {
+    return this.name;
+  }
+
+  public int getAge() {
+    return this.age;
+  }
+
+  public String getGender() {
+    return this.gender;
+  }
+
   public void introduce() {
     System.out.println("Hi, I'm " + name + ", a " + age + " year old " + gender + ".");
   }

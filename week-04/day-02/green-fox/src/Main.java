@@ -6,5 +6,8 @@ public class Main {
 
     Person newPerson = new Person("John", 40, "male");
     newPerson.introduce();
+
+    Student newStudent = new Student();
+    newStudent.introduce();
   }
 }
