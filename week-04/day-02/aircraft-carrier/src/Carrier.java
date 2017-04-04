@@ -36,6 +36,24 @@ public class Carrier {
     other.health -= damage;
   }
 
+  public void getStatus () {
+    int totalDamage = 0;
+    for (Aircraft aircraft : aircrafts) {
+      totalDamage += (aircraft.ammo * aircraft.baseDamage);
+    }
+    if (health > 0) {
+      System.out.println("Aircraft count: " + aircrafts.size() + ", Ammo Storage: " + ammoStorage + ", Total damage: " +
+              "" + totalDamage);
+      System.out.println("Aircrafts:");
+      for (Aircraft aircraft : aircrafts) {
+        System.out.println("Type " + aircraft.type + ", Ammo: " + aircraft.ammo + ", Base Damage: " + aircraft
+                .baseDamage + ", All Damage: " + aircraft.ammo * aircraft.baseDamage);
+      }
+    } else {
+      System.out.println("It's dead Jim :(");
+    }
+  }
+
   Carrier(int ammo) {
     aircrafts = new ArrayList<>();
     ammoStorage = ammo;
