@@ -11,8 +11,8 @@ public class Sponsor extends Person {
     hiredStudents++;
   }
 
-  public void getgoal() {
-    System.out.println("Hire brilliant junior software developers.");
+  public void getGoal() {
+    System.out.println("My goal is: Hire brilliant junior software developers.");
   }
 
   Sponsor(String name, int age, String gender, String company) {
