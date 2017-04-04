@@ -10,6 +10,18 @@ public class Person {
   public void getGoal() {
     System.out.println("My goal is: Live for the moment!");
   }
+
+  Person(String name, int age, String gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
+
+  Person() {
+    this.name = "Jane Doe";
+    this.age = 30;
+    this.gender = "female";
+  }
 }
 
 
