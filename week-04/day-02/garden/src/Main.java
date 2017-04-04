@@ -14,5 +14,11 @@ public class Main {
     garden.add(orange);
 
     garden.status();
+
+    garden.water(40);
+    garden.status();
+
+    garden.water(70);
+    garden.status();
   }
 }

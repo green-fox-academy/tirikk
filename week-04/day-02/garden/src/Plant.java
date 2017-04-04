@@ -10,8 +10,12 @@ public class Plant {
     return color;
   }
 
-  public void setWater (double i) {
-    waterAmount += i;
+  public void setWater(double i) {
+    waterAmount = i;
+  }
+
+  public void addWater (double i) {
+    setWater(i);
   }
 
   Plant(String color) {

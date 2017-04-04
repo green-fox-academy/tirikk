@@ -8,8 +8,9 @@ public class Flower extends Plant{
     }
   }
 
-  public void water(double i) {
-    this.setWater(i);
+  @Override
+  public void addWater (double i) {
+    this.setWater(i * 0.75);
   }
 
   Flower(String color) {

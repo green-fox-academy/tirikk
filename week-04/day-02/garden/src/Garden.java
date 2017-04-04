@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Garden {
   ArrayList<Plant> plants;
+  int toWater;
 
   public void add(Flower flower) {
     plants.add(flower);
@@ -12,16 +13,19 @@ public class Garden {
   }
 
   public void status() {
+    toWater = 0;
     for (Plant plant : plants) {
       if (plant instanceof Flower) {
-        if (plant.getWater() < 5) {
+        if (((Flower) plant).needsWater()) {
           System.out.println("The " + plant.getColor() + " Flower needs water");
+          toWater++;
         } else {
           System.out.println("The " + plant.getColor() + " Flower doesn't need water");
         }
       } else {
-        if (plant.getWater() < 5) {
+        if (((Tree) plant).needsWater()) {
           System.out.println("The " + plant.getColor() + " Tree needs water");
+          toWater++;
         } else {
           System.out.println("The " + plant.getColor() + " Tree doesn't need water");
         }
@@ -31,9 +35,14 @@ public class Garden {
 
   public void water(double i) {
     System.out.println("Watering with " + i);
-//    for (Plant plant : plants) {
-//      
-//    }
+    for (Plant plant : plants) {
+      if (plant instanceof Flower && ((Flower) plant).needsWater()) {
+        plant.addWater(i / toWater);
+      }
+      if (plant instanceof Tree && ((Tree) plant).needsWater()) {
+        plant.addWater(i / toWater);
+      }
+    }
   }
 
   Garden() {

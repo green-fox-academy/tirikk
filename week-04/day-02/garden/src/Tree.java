@@ -8,9 +8,11 @@ public class Tree extends Plant {
     }
   }
 
-  public void water(double i) {
-    this.setWater(i);
+  @Override
+  public void addWater (double i) {
+    this.setWater(i * 0.4);
   }
+
 
   Tree(String color) {
     super(color);
