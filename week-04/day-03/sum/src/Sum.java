@@ -4,9 +4,13 @@ public class Sum {
 
   public int sum(ArrayList<Integer> list) {
     int sum = 0;
-    for (int num : list) {
-      sum += num;
+    if (list == null) {
+      return sum;
+    } else {
+      for (int num : list) {
+        sum += num;
+      }
+      return sum;
     }
-    return sum;
   }
 }
