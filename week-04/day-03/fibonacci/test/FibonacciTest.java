@@ -9,5 +9,4 @@ class FibonacciTest {
     Fibonacci fibToTest = new Fibonacci();
     assertEquals(34, fibToTest.fibonacci(9));
   }
-
 }

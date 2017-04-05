@@ -55,6 +55,6 @@ class ExtensionTest {
 
   @Test
   void testTranslate_kolbice() {
-    assertEquals("lavagovopuvus", extension.translate("lagopus"));
+    assertEquals("kovolbávász", extension.translate("kolbász"));
   }
 }
