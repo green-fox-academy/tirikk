@@ -27,14 +27,18 @@ public class Extension {
 
   String translate(String hungarian) {
     String teve = hungarian;
+    String lastLetter = hungarian.substring(hungarian.length() - 1);
     int length = teve.length();
     for (int i = 0; i < length; i++) {
       char c = teve.charAt(i);
       if (isVowel(c)) {
         teve = String.join(c + "v" + c, teve.split(""+c));
         i+=2;
-        length+=2;
+        length = teve.length();
       }
+    }
+    if(isVowel(lastLetter.charAt(0))) {
+      teve += lastLetter + "v" + lastLetter;
     }
     return teve;
   }
