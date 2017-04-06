@@ -94,6 +94,10 @@ public class CAB {
     return randomNo;
   }
 
+  public void setRandomNo(Integer i) {
+    randomNo = i.toString();
+  }
+
   public int getCounter() {
     return counter;
   }
