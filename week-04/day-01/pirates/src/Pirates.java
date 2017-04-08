@@ -4,7 +4,7 @@ public class Pirates {
   boolean awake = true;
   boolean parrot = true;
 
-  public void drinkSomeRum() {
+  void drinkSomeRum() {
     if (alive && awake) {
       intoxication++;
     } else if (!alive){
@@ -29,7 +29,7 @@ public class Pirates {
     }
   }
 
-  public void die() {
+  private void die() {
     alive = false;
   }
 

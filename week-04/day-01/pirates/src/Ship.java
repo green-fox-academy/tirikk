@@ -23,12 +23,13 @@ public class Ship {
       System.out.println("The captain passed out");
     }
     aliveNo = 0;
-    for (Pirates crewmember : crew) {
-      if (crewmember.alive) {
+    for (Pirates crewMember : crew) {
+      if (crewMember.alive) {
         this.aliveNo++;
       }
     }
     System.out.println("Pirates in crew still alive: " + aliveNo);
+    System.out.println();
   }
 
   public boolean battle(Ship othership) {
@@ -42,8 +43,8 @@ public class Ship {
       int rum = (int) (Math.random() * 5);
       for (int k = 0; k < rum; k++) {
         this.captain.drinkSomeRum();
-        for (Pirates crewmember : this.crew) {
-          crewmember.drinkSomeRum();
+        for (Pirates crewMember : this.crew) {
+          crewMember.drinkSomeRum();
         }
       }
       return true;
@@ -52,11 +53,11 @@ public class Ship {
       for (int j = 0; j < deaths; j++) {
         this.crew.get(j).alive = false;
       }
-      int rum = (int) (Math.random() * 5);
+      int rum = (int) (Math.random() * 10);
       for (int k = 0; k < rum; k++) {
         othership.captain.drinkSomeRum();
-        for (Pirates crewmember : othership.crew) {
-          crewmember.drinkSomeRum();
+        for (Pirates crewMember : othership.crew) {
+          crewMember.drinkSomeRum();
         }
       }
       return false;
