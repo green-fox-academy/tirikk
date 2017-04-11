@@ -6,12 +6,14 @@ import java.awt.event.KeyListener;
 public class Board extends JComponent implements KeyListener {
   Map map = new Map();
   Hero hero = new Hero();
+  Monster monsters = new Monster();
 
 
   public Board() {
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
     map.mapGetFromFile();
+    monsters.genMonster();
   }
 
   @Override
@@ -52,5 +54,6 @@ public class Board extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     map.drawMap(graphics);
     hero.drawHero(graphics);
+    monsters.drawMonster(graphics);
   }
 }
