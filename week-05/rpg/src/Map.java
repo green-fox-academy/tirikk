@@ -16,7 +16,7 @@ public class Map {
     }
   }
 
-  public int[][] mapGet() {
+  public void mapGetFromFile() {
     Path filePath = Paths.get("matrix.txt");
     List<String> initList;
     try {
@@ -33,15 +33,12 @@ public class Map {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return matrix;
   }
 
   public void drawMap(Graphics g) {
-    int[][] walls = mapGet();
-
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
-        if (walls[i][j] == 1) {
+        if (matrix[i][j] == 1) {
           PositionedImage image = new PositionedImage("wall.png", 72 * i, 72 * j);
           image.draw(g);
         } else {

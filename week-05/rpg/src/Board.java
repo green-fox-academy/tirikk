@@ -7,9 +7,11 @@ public class Board extends JComponent implements KeyListener {
   Map map = new Map();
   Hero hero = new Hero();
 
+
   public Board() {
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
+    map.mapGetFromFile();
   }
 
   @Override
@@ -23,22 +25,22 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void keyReleased(KeyEvent e) {
     if (e.getKeyCode() == KeyEvent.VK_UP ) {
-      if (hero.heroPosY >= 72 && map.mapGet()[hero.heroPosX / 72][hero.heroPosY / 72 - 1] != 1) {
+      if (hero.heroPosY >= 72 && map.matrix[hero.heroPosX / 72][hero.heroPosY / 72 - 1] != 1) {
         hero.heroPosY -= 72;
       }
       hero.direction = "up";
     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-      if (hero.heroPosY < 648 && map.mapGet()[hero.heroPosX / 72][hero.heroPosY / 72 + 1] != 1) {
+      if (hero.heroPosY < 648 && map.matrix[hero.heroPosX / 72][hero.heroPosY / 72 + 1] != 1) {
         hero.heroPosY += 72;
       }
       hero.direction = "down";
     } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      if (hero.heroPosX >= 72 && map.mapGet()[hero.heroPosX / 72 - 1][hero.heroPosY / 72] != 1) {
+      if (hero.heroPosX >= 72 && map.matrix[hero.heroPosX / 72 - 1][hero.heroPosY / 72] != 1) {
         hero.heroPosX -= 72;
       }
       hero.direction = "left";
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      if (hero.heroPosX < 648 && map.mapGet()[hero.heroPosX / 72 + 1][hero.heroPosY / 72] != 1) {
+      if (hero.heroPosX < 648 && map.matrix[hero.heroPosX / 72 + 1][hero.heroPosY / 72] != 1) {
         hero.heroPosX += 72;
       }
       hero.direction = "right";
