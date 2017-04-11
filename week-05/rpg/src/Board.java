@@ -1,24 +1,13 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Board extends JComponent implements KeyListener {
   Map map = new Map();
   Hero hero = new Hero();
 
-//  int heroPosX;
-//  int heroPosY;
-//  String direction;
-
   public Board() {
-//    heroPosX = 0;
-//    heroPosY = 0;
-
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
   }
@@ -61,27 +50,5 @@ public class Board extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     map.drawMap(graphics);
     hero.drawHero(graphics);
-  }
-
-  public class PositionedImage {
-
-    BufferedImage image;
-    int posX, posY;
-
-    public PositionedImage(String filename, int posX, int posY) {
-      this.posX = posX;
-      this.posY = posY;
-      try {
-        image = ImageIO.read(new File(filename));
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-
-    public void draw(Graphics graphics) {
-      if (image != null) {
-        graphics.drawImage(image, posX, posY, null);
-      }
-    }
   }
 }
