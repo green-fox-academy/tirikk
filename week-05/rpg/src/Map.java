@@ -16,8 +16,8 @@ public class Map {
     }
   }
 
-  public void mapGetFromFile() {
-    Path filePath = Paths.get("matrix.txt");
+  public void getMapFromFile() {
+    Path filePath = Paths.get("level1.txt");
     List<String> initList;
     try {
       initList = Files.readAllLines(filePath);
