@@ -9,14 +9,15 @@ import java.io.IOException;
 
 public class Board extends JComponent implements KeyListener {
   Map map = new Map();
+  Hero hero = new Hero();
 
-  int heroPosX;
-  int heroPosY;
-  String direction;
+//  int heroPosX;
+//  int heroPosY;
+//  String direction;
 
   public Board() {
-    heroPosX = 0;
-    heroPosY = 0;
+//    heroPosX = 0;
+//    heroPosY = 0;
 
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
@@ -33,50 +34,33 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void keyReleased(KeyEvent e) {
     if (e.getKeyCode() == KeyEvent.VK_UP ) {
-      if (heroPosY >= 72 && map.mapGet()[heroPosX / 72][heroPosY / 72 - 1] != 1) {
-        heroPosY -= 72;
+      if (hero.heroPosY >= 72 && map.mapGet()[hero.heroPosX / 72][hero.heroPosY / 72 - 1] != 1) {
+        hero.heroPosY -= 72;
       }
-      direction = "up";
+      hero.direction = "up";
     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-      if (heroPosY < 648 && map.mapGet()[heroPosX / 72][heroPosY / 72 + 1] != 1) {
-        heroPosY += 72;
+      if (hero.heroPosY < 648 && map.mapGet()[hero.heroPosX / 72][hero.heroPosY / 72 + 1] != 1) {
+        hero.heroPosY += 72;
       }
-      direction = "down";
+      hero.direction = "down";
     } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      if (heroPosX >= 72 && map.mapGet()[heroPosX / 72 - 1][heroPosY / 72] != 1) {
-        heroPosX -= 72;
+      if (hero.heroPosX >= 72 && map.mapGet()[hero.heroPosX / 72 - 1][hero.heroPosY / 72] != 1) {
+        hero.heroPosX -= 72;
       }
-      direction = "left";
+      hero.direction = "left";
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      if (heroPosX < 648 && map.mapGet()[heroPosX / 72 + 1][heroPosY / 72] != 1) {
-        heroPosX += 72;
+      if (hero.heroPosX < 648 && map.mapGet()[hero.heroPosX / 72 + 1][hero.heroPosY / 72] != 1) {
+        hero.heroPosX += 72;
       }
-      direction = "right";
+      hero.direction = "right";
     }
     repaint();
   }
 
   @Override
   public void paint(Graphics graphics) {
-    drawMap(graphics);
-    Hero hero = new Hero();
-    hero.drawHero(graphics, heroPosX, heroPosY, direction);
-  }
-
-  public void drawMap(Graphics g) {
-    int[][] walls = map.mapGet();
-
-    for (int i = 0; i < 10; i++) {
-      for (int j = 0; j < 10; j++) {
-        if (walls[i][j] == 1) {
-          PositionedImage image = new PositionedImage("wall.png", 72 * i, 72 * j);
-          image.draw(g);
-        } else {
-          PositionedImage image = new PositionedImage("floor.png", 72 * i, 72 * j);
-          image.draw(g);
-        }
-      }
-    }
+    map.drawMap(graphics);
+    hero.drawHero(graphics);
   }
 
   public class PositionedImage {

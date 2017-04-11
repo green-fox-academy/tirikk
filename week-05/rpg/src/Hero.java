@@ -5,25 +5,24 @@ import java.io.File;
 import java.io.IOException;
 
 public class Hero {
-  private int heroPosX = 0;
-  private int heroPosY = 0;
+ int heroPosX = 0;
+ int heroPosY = 0;
+ String direction;
 
-  public void drawHero(Graphics g, int x, int y, String direction) {
+  public void drawHero(Graphics g) {
     if (direction == "right") {
-      PositionedImage image = new PositionedImage("hero-right.png", x, y);
+      PositionedImage image = new PositionedImage("hero-right.png", heroPosX, heroPosY);
       image.draw(g);
     } else if (direction == "left") {
-      PositionedImage image = new PositionedImage("hero-left.png", x, y);
+      PositionedImage image = new PositionedImage("hero-left.png", heroPosX, heroPosY);
       image.draw(g);
     } else if (direction == "up") {
-      PositionedImage image = new PositionedImage("hero-up.png", x, y);
+      PositionedImage image = new PositionedImage("hero-up.png", heroPosX, heroPosY);
       image.draw(g);
     } else {
-      PositionedImage image = new PositionedImage("hero-down.png", x, y);
+      PositionedImage image = new PositionedImage("hero-down.png", heroPosX, heroPosY);
       image.draw(g);
     }
-    heroPosX = x;
-    heroPosY = y;
   }
 
   public class PositionedImage {

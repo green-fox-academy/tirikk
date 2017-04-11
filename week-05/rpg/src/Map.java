@@ -1,3 +1,7 @@
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,5 +37,43 @@ public class Map {
       e.printStackTrace();
     }
     return matrix;
+  }
+
+  public void drawMap(Graphics g) {
+    int[][] walls = mapGet();
+
+    for (int i = 0; i < 10; i++) {
+      for (int j = 0; j < 10; j++) {
+        if (walls[i][j] == 1) {
+          PositionedImage image = new PositionedImage("wall.png", 72 * i, 72 * j);
+          image.draw(g);
+        } else {
+          PositionedImage image = new PositionedImage("floor.png", 72 * i, 72 * j);
+          image.draw(g);
+        }
+      }
+    }
+  }
+
+  public class PositionedImage {
+
+    BufferedImage image;
+    int posX, posY;
+
+    public PositionedImage(String filename, int posX, int posY) {
+      this.posX = posX;
+      this.posY = posY;
+      try {
+        image = ImageIO.read(new File(filename));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    public void draw(Graphics graphics) {
+      if (image != null) {
+        graphics.drawImage(image, posX, posY, null);
+      }
+    }
   }
 }
