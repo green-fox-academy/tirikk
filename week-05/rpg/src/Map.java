@@ -8,15 +8,15 @@ import java.util.List;
 public class Map {
   int[][] matrix = new int[10][10];
 
-  public void mapGen() {
-    for (int i = 0; i < 10; i++) {
-      for (int j = 0; j <10; j++) {
-        matrix[i][j] = (int)(Math.random() * 2);
-      }
-    }
-  }
+//  public void mapGen() {
+//    for (int i = 0; i < 10; i++) {
+//      for (int j = 0; j <10; j++) {
+//        matrix[i][j] = (int)(Math.random() * 2);
+//      }
+//    }
+//  }
 
-  public void getMapFromFile() {
+  public int[][] getMapFromFile() {
     Path filePath = Paths.get("level1.txt");
     List<String> initList;
     try {
@@ -33,6 +33,7 @@ public class Map {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    return matrix;
   }
 
   public void drawMap(Graphics g) {

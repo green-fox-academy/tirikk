@@ -8,13 +8,14 @@ public class Board extends JComponent implements KeyListener{
   Hero hero = new Hero();
   Monster monsters = new Monster();
   Boss boss = new Boss();
+  int[][] matrix = new int[10][10];
 
   public Board() {
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
-    map.getMapFromFile();
-    monsters.genMonster();
-    boss.genBoss();
+    matrix = map.getMapFromFile();
+    matrix = monsters.genMonster(matrix);
+    matrix = boss.genBoss(matrix);
   }
 
   @Override
@@ -28,13 +29,16 @@ public class Board extends JComponent implements KeyListener{
   @Override
   public void keyReleased(KeyEvent e) {
     if (e.getKeyCode() == KeyEvent.VK_UP ) {
-      hero.heroMovementY(-72);
+      hero.heroMovementY(-72, matrix);
     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-      hero.heroMovementY(72);
+      hero.heroMovementY(72, matrix);
     } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      hero.heroMovementX(-72);
+      hero.heroMovementX(-72, matrix);
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      hero.heroMovementX(72);
+      hero.heroMovementX(72, matrix);
+    }
+    if (hero.moveCounter % 2 == 0) {
+      matrix = boss.bossMovement(matrix);
     }
     repaint();
   }
@@ -42,8 +46,13 @@ public class Board extends JComponent implements KeyListener{
   @Override
   public void paint(Graphics graphics) {
     map.drawMap(graphics);
-    monsters.drawMonster(graphics);
-    boss.drawBoss(graphics);
+    monsters.drawMonster(graphics, matrix);
+    boss.drawBoss(graphics, matrix);
     hero.drawHero(graphics);
+//    for (int i = 0; i < 10; i++) {
+//      for (int j = 0; j < 10; j++) {
+//        System.out.println(map.matrix[i][j]);
+//      }
+//    }
   }
 }
