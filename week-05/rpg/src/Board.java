@@ -1,31 +1,48 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Board extends JComponent {
+public class Board extends JComponent implements KeyListener {
 
-  int testBoxX;
-  int testBoxY;
+  int heroPosX;
+  int heroPosY;
 
   public Board() {
-    testBoxX = 300;
-    testBoxY = 300;
+    heroPosX = 0;
+    heroPosY = 0;
 
-    // set the size of your draw board
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
   }
 
   @Override
+  public void keyTyped(KeyEvent e) {
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+    if (e.getKeyCode() == KeyEvent.VK_UP) {
+      heroPosY -= 72;
+    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+      heroPosY += 72;
+    }
+    repaint();
+  }
+
+  @Override
   public void paint(Graphics graphics) {
-//    super.paint(graphics);
-//    graphics.fillRect(testBoxX, testBoxY, 72, 72);
-    // here you have a 720x720 canvas
-    // you can create and draw an image using the class below e.g.
     drawMap(graphics);
+    Hero hero = new Hero();
+    hero.drawHero(graphics, heroPosX, heroPosY);
   }
 
   public void drawMap(Graphics g) {
