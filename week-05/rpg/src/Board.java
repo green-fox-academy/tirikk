@@ -30,10 +30,14 @@ public class Board extends JComponent implements KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_UP) {
+    if (e.getKeyCode() == KeyEvent.VK_UP && heroPosY >= 72) {
       heroPosY -= 72;
-    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+    } else if (e.getKeyCode() == KeyEvent.VK_DOWN && heroPosY < 648) {
       heroPosY += 72;
+    } else if (e.getKeyCode() == KeyEvent.VK_LEFT && heroPosX >= 72) {
+      heroPosX -= 72;
+    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && heroPosX < 648) {
+      heroPosX += 72;
     }
     repaint();
   }
@@ -46,7 +50,8 @@ public class Board extends JComponent implements KeyListener {
   }
 
   public void drawMap(Graphics g) {
-    int[][] walls = new int[][]{
+    Map map = new Map();
+    int[][] walls = {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

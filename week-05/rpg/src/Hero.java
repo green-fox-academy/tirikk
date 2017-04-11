@@ -6,9 +6,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class Hero{
+  int heroPosX = 0;
+  int heroPosY = 0;
 
   public void drawHero(Graphics g, int x, int y) {
     PositionedImage image = new PositionedImage("hero-down.png", x, y);
+    heroPosX = x;
+    heroPosY = y;
     image.draw(g);
   }
 
