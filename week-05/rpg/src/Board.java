@@ -11,6 +11,7 @@ public class Board extends JComponent implements KeyListener {
 
   int heroPosX;
   int heroPosY;
+  String direction;
 
   public Board() {
     heroPosX = 0;
@@ -31,12 +32,16 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void keyReleased(KeyEvent e) {
     if (e.getKeyCode() == KeyEvent.VK_UP && heroPosY >= 72) {
+      direction = "up";
       heroPosY -= 72;
     } else if (e.getKeyCode() == KeyEvent.VK_DOWN && heroPosY < 648) {
+      direction = "down";
       heroPosY += 72;
     } else if (e.getKeyCode() == KeyEvent.VK_LEFT && heroPosX >= 72) {
+      direction = "left";
       heroPosX -= 72;
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && heroPosX < 648) {
+      direction = "right";
       heroPosX += 72;
     }
     repaint();
@@ -46,23 +51,23 @@ public class Board extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     drawMap(graphics);
     Hero hero = new Hero();
-    hero.drawHero(graphics, heroPosX, heroPosY);
+    hero.drawHero(graphics, heroPosX, heroPosY, direction);
   }
 
   public void drawMap(Graphics g) {
     Map map = new Map();
-    int[][] walls = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 1, 1, 1, 1, 1, 0, 0},
-            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-    };
+    int[][] walls = map.mapGet();
+//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 1, 1, 1, 1, 1, 0, 0},
+//            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+//    };
 
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
