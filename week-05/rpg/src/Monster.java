@@ -16,9 +16,12 @@ public class Monster {
     monsterPosY = 0;
     int i = (int) (Math.random() * 10);
     if (i < 5) {
-
+      this.level = level;
+    } else if (i < 9) {
+      this.level = level + 1;
+    } else {
+      this.level = level + 2;
     }
-    this.level = level;
     HP = 2 * this.level * (int) (Math.random() * 6 + 1);
     DP = (int)((double) this.level / 2 * (Math.random() * 6 + 1));
     SP = this.level * (int) (Math.random() * 6 + 1);

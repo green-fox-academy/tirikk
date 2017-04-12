@@ -6,15 +6,15 @@ import java.awt.event.KeyListener;
 public class Board extends JComponent implements KeyListener{
   Map map = new Map();
   Hero hero = new Hero();
+  int[][] matrix = map.getMapFromFile();
   Monster monsters = new Monster(map.levelNo);
   Boss boss = new Boss(map.levelNo);
-  int[][] matrix = new int[10][10];
+
   HUD hud = new HUD(hero, monsters, boss);
 
   public Board() {
     setPreferredSize(new Dimension(1100, 720));
     setVisible(true);
-    matrix = map.getMapFromFile();
     matrix = monsters.genMonster(matrix, map.levelNo);
     matrix = boss.genBoss(matrix);
   }
@@ -43,6 +43,12 @@ public class Board extends JComponent implements KeyListener{
       matrix = monsters.monsterMovement(matrix);
     }
     repaint();
+    if (hero.heroPosX == boss.monsterPosX && hero.heroPosY == boss.monsterPosY) {
+     Battlefield battlefield = new Battlefield(hero, boss);
+
+    }
+    repaint();
+
   }
 
   @Override

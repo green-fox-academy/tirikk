@@ -21,5 +21,9 @@ public class HUD {
                 + monster.SP, 750, 60);
       }
     }
+    if (hero.heroPosX == boss.monsterPosX && hero.heroPosY == boss.monsterPosY) {
+      g.drawString("Boss (Level " + boss.level + ") HP: " + boss.HP + " | DP: " + boss.DP + " | SP: "
+              + boss.SP, 750, 60);
+    }
   }
 }
