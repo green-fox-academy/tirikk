@@ -4,18 +4,32 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Board extends JComponent implements KeyListener {
+  int level = 1;
   Map map = new Map();
   Hero hero = new Hero();
   int[][] matrix = map.getMapFromFile();
-  Monster monsters = new Monster(map.levelNo);
-  Boss boss = new Boss(map.levelNo);
-  HUD hud = new HUD(hero, monsters, boss);
+  Monster monsters = new Monster(level);
+  Boss boss = new Boss(level);
+  HUD hud;
 
   public Board() {
     setPreferredSize(new Dimension(1100, 720));
     setVisible(true);
-    matrix = monsters.genMonster(matrix, map.levelNo);
+    matrix = monsters.genMonster(matrix, level);
     matrix = boss.genBoss(matrix);
+    hud = new HUD(hero, monsters, boss);
+  }
+
+  public Board(Hero hero, int level) {
+    this.level = level;
+    setPreferredSize(new Dimension(1100, 720));
+    setVisible(true);
+    this.hero = hero;
+    monsters = new Monster(level);
+    boss = new Boss(level);
+    matrix = monsters.genMonster(matrix, level);
+    matrix = boss.genBoss(matrix);
+    hud = new HUD(hero, monsters, boss);
   }
 
   @Override
@@ -48,6 +62,12 @@ public class Board extends JComponent implements KeyListener {
       Battlefield battlefield = new Battlefield(hero, boss);
       if (e.getKeyCode() == KeyEvent.VK_SPACE) {
         if (battlefield.fight()) {
+          if (hero.hasKey) {
+            hero.hasKey = false;
+            hero.posY = 0;
+            hero.posX = 0;
+            Main.main(hero, level + 1);
+          }
           matrix[boss.posX / 72][boss.posY / 72] = 0;
         } else {
           hero.canMove = false;
@@ -60,6 +80,16 @@ public class Board extends JComponent implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
           if (battlefield.fight()) {
             matrix[monster.posX / 72][monster.posY / 72] = 0;
+            if (monster.hasKey) {
+              if (boss.HP <= 0) {
+                hero.posY = 0;
+                hero.posX = 0;
+                Main.main(hero, level + 1);
+              } else {
+                hero.hasKey = true;
+                monster.hasKey = false;
+              }
+            }
           } else {
             hero.canMove = false;
           }
