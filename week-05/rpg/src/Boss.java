@@ -13,9 +13,9 @@ public class Boss {
     monsterPosX = 0;
     monsterPosY = 0;
     this.level = level;
-    HP = 3 * this.level * (int)(Math.random() * 6 + 1);
-    DP = this.level / 2 * (int)(Math.random() * 6 + 1) + (int)(Math.random() * 6 + 1) / 2;
-    SP = this.level * (int)(Math.random() * 6 + 1);
+    HP = 3 * this.level * (int) (Math.random() * 6 + 1);
+    DP = this.level / 2 * (int) (Math.random() * 6 + 1) + (int) (Math.random() * 6 + 1) / 2;
+    SP = this.level * (int) (Math.random() * 6 + 1);
   }
 
   public int[][] genBoss(int[][] matrix) {
@@ -47,7 +47,6 @@ public class Boss {
   public int[][] bossMovement(int[][] matrix) {
     int canMove = 1;
     ArrayList<Integer> directionsTried = new ArrayList<>();
-    outerloop:
     while (canMove > 0) {
       int direction = (int) (Math.random() * 4);
       if (direction == 0) {
@@ -56,7 +55,6 @@ public class Boss {
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosY -= 72;
           canMove--;
-          directionsTried.add(direction);
         }
       } else if (direction == 1) {
         if ((monsterPosY < 648 && matrix[monsterPosX / 72][monsterPosY / 72 + 1] == 0)) {
@@ -64,7 +62,6 @@ public class Boss {
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosY += 72;
           canMove--;
-          directionsTried.add(direction);
         }
       } else if (direction == 2) {
         if ((monsterPosX >= 72 && matrix[monsterPosX / 72 - 1][monsterPosY / 72] == 0)) {
@@ -72,7 +69,6 @@ public class Boss {
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosX -= 72;
           canMove--;
-          directionsTried.add(direction);
         }
       } else {
         if ((monsterPosX < 648 && matrix[monsterPosX / 72 + 1][monsterPosY / 72] == 0)) {
@@ -80,12 +76,12 @@ public class Boss {
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosX += 72;
           canMove--;
-          directionsTried.add(direction);
         }
       }
+      directionsTried.add(direction);
       if (directionsTried.contains(0) && directionsTried.contains(1) && directionsTried.contains(2) &&
-              directionsTried.contains(3) && canMove == 0) {
-        return matrix;
+              directionsTried.contains(3)) {
+        canMove--;
       }
     }
     return matrix;

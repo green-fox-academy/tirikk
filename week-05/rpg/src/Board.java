@@ -9,9 +9,10 @@ public class Board extends JComponent implements KeyListener{
   Monster monsters = new Monster(map.levelNo);
   Boss boss = new Boss(map.levelNo);
   int[][] matrix = new int[10][10];
+  HUD hud = new HUD(hero, monsters, boss);
 
   public Board() {
-    setPreferredSize(new Dimension(720, 720));
+    setPreferredSize(new Dimension(1100, 720));
     setVisible(true);
     matrix = map.getMapFromFile();
     matrix = monsters.genMonster(matrix, map.levelNo);
@@ -50,5 +51,6 @@ public class Board extends JComponent implements KeyListener{
     monsters.drawMonster(graphics, matrix);
     boss.drawBoss(graphics, matrix);
     hero.drawHero(graphics);
+    hud.drawHUD(graphics, matrix);
   }
 }

@@ -2,8 +2,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Monster {
-  private int monsterPosX;
-  private int monsterPosY;
+  int monsterPosX;
+  int monsterPosY;
   int level;
   int HP;
   int DP;
@@ -14,10 +14,13 @@ public class Monster {
   Monster(int level) {
     monsterPosX = 0;
     monsterPosY = 0;
-    int i = (int)(Math.random() * 10);
+    int i = (int) (Math.random() * 10);
+    if (i < 5) {
+
+    }
     this.level = level;
     HP = 2 * this.level * (int) (Math.random() * 6 + 1);
-    DP = this.level / 2 * (int) (Math.random() * 6 + 1);
+    DP = (int)((double) this.level / 2 * (Math.random() * 6 + 1));
     SP = this.level * (int) (Math.random() * 6 + 1);
     hasKey = false;
   }
@@ -56,7 +59,6 @@ public class Monster {
     for (Monster monster : monsters) {
       int canMove = 1;
       ArrayList<Integer> directionsTried = new ArrayList<>();
-      outerloop:
       while (canMove > 0) {
         int direction = (int) (Math.random() * 4);
         if (direction == 0) {
@@ -65,7 +67,6 @@ public class Monster {
             matrix[monster.monsterPosX / 72][monster.monsterPosY / 72] = 0;
             monster.monsterPosY -= 72;
             canMove--;
-            directionsTried.add(direction);
           }
         } else if (direction == 1) {
           if ((monster.monsterPosY < 648 && matrix[monster.monsterPosX / 72][monster.monsterPosY / 72 + 1] == 0)) {
@@ -73,7 +74,6 @@ public class Monster {
             matrix[monster.monsterPosX / 72][monster.monsterPosY / 72] = 0;
             monster.monsterPosY += 72;
             canMove--;
-            directionsTried.add(direction);
           }
         } else if (direction == 2) {
           if ((monster.monsterPosX >= 72 && matrix[monster.monsterPosX / 72 - 1][monster.monsterPosY / 72] == 0)) {
@@ -81,7 +81,6 @@ public class Monster {
             matrix[monster.monsterPosX / 72][monster.monsterPosY / 72] = 0;
             monster.monsterPosX -= 72;
             canMove--;
-            directionsTried.add(direction);
           }
         } else {
           if ((monster.monsterPosX < 648 && matrix[monster.monsterPosX / 72 + 1][monster.monsterPosY / 72] == 0)) {
@@ -89,12 +88,12 @@ public class Monster {
             matrix[monster.monsterPosX / 72][monster.monsterPosY / 72] = 0;
             monster.monsterPosX += 72;
             canMove--;
-            directionsTried.add(direction);
           }
         }
+        directionsTried.add(direction);
         if (directionsTried.contains(0) && directionsTried.contains(1) && directionsTried.contains(2) &&
                 directionsTried.contains(3)) {
-          break outerloop;
+          canMove--;
         }
       }
     }
