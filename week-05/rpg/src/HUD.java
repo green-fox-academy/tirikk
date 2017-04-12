@@ -16,12 +16,13 @@ public class HUD {
     g.drawString("Hero (Level " + hero.level + ") HP: " + hero.HP + " | DP: " + hero.DP + " | SP: " + hero.SP, 750,
             40);
     for (Monster monster : monster.monsters) {
-      if (hero.heroPosX == monster.monsterPosX && hero.heroPosY == monster.monsterPosY) {
+      if (hero.posX == monster.posX && hero.posY == monster.posY) {
         g.drawString("Monster (Level " + monster.level + ") HP: " + monster.HP + " | DP: " + monster.DP + " | SP: "
                 + monster.SP, 750, 60);
       }
     }
-    if (hero.heroPosX == boss.monsterPosX && hero.heroPosY == boss.monsterPosY) {
+    if (hero.posX == boss.posX && hero.posY == boss.posY) {
+
       g.drawString("Boss (Level " + boss.level + ") HP: " + boss.HP + " | DP: " + boss.DP + " | SP: "
               + boss.SP, 750, 60);
     }

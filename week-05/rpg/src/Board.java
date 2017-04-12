@@ -3,13 +3,12 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Board extends JComponent implements KeyListener{
+public class Board extends JComponent implements KeyListener {
   Map map = new Map();
   Hero hero = new Hero();
   int[][] matrix = map.getMapFromFile();
   Monster monsters = new Monster(map.levelNo);
   Boss boss = new Boss(map.levelNo);
-
   HUD hud = new HUD(hero, monsters, boss);
 
   public Board() {
@@ -29,7 +28,7 @@ public class Board extends JComponent implements KeyListener{
 
   @Override
   public void keyReleased(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_UP ) {
+    if (e.getKeyCode() == KeyEvent.VK_UP) {
       hero.heroMovementY(-72, matrix);
     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
       hero.heroMovementY(72, matrix);
@@ -43,12 +42,16 @@ public class Board extends JComponent implements KeyListener{
       matrix = monsters.monsterMovement(matrix);
     }
     repaint();
-    if (hero.heroPosX == boss.monsterPosX && hero.heroPosY == boss.monsterPosY) {
-     Battlefield battlefield = new Battlefield(hero, boss);
-
+    if (hero.posX == boss.posX && hero.posY == boss.posY) {
+      Battlefield battlefield = new Battlefield(hero, boss);
+      if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        battlefield.fight();
+        matrix[boss.posX / 72][boss.posY / 72] = 0;
+        boss.posX = -72;
+        boss.posY = -72;
+      }
     }
     repaint();
-
   }
 
   @Override

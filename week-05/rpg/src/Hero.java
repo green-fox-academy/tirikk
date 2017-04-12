@@ -1,20 +1,14 @@
 import java.awt.*;
+import java.lang.*;
 
-public class Hero {
-  int heroPosX;
-  int heroPosY;
+public class Hero extends Character {
   String direction;
   int moveCounter;
-  int level;
-  int HP;
-  int DP;
-  int SP;
   boolean hasKey;
-  boolean canMove;
 
   Hero() {
-    heroPosX = 0;
-    heroPosY = 0;
+    posX = 0;
+    posY = 0;
     direction = "down";
     moveCounter = 0;
     level = 1;
@@ -27,16 +21,16 @@ public class Hero {
 
   public void drawHero(Graphics g) {
     if (direction == "right") {
-      PositionedImage image = new PositionedImage("hero-right.png", heroPosX, heroPosY);
+      PositionedImage image = new PositionedImage("hero-right.png", posX, posY);
       image.draw(g);
     } else if (direction == "left") {
-      PositionedImage image = new PositionedImage("hero-left.png", heroPosX, heroPosY);
+      PositionedImage image = new PositionedImage("hero-left.png", posX, posY);
       image.draw(g);
     } else if (direction == "up") {
-      PositionedImage image = new PositionedImage("hero-up.png", heroPosX, heroPosY);
+      PositionedImage image = new PositionedImage("hero-up.png", posX, posY);
       image.draw(g);
     } else {
-      PositionedImage image = new PositionedImage("hero-down.png", heroPosX, heroPosY);
+      PositionedImage image = new PositionedImage("hero-down.png", posX, posY);
       image.draw(g);
     }
   }
@@ -44,14 +38,14 @@ public class Hero {
   public void heroMovementY(int i, int[][] matrix) {
     if (canMove) {
       if (i < 0) {
-        if (heroPosY >= 72 && matrix[heroPosX / 72][heroPosY / 72 - 1] != 1) {
-          heroPosY += i;
+        if (posY >= 72 && matrix[posX / 72][posY / 72 - 1] != 1) {
+          posY += i;
         }
         direction = "up";
         moveCounter++;
       } else {
-        if (heroPosY < 648 && matrix[heroPosX / 72][heroPosY / 72 + 1] != 1) {
-          heroPosY += i;
+        if (posY < 648 && matrix[posX / 72][posY / 72 + 1] != 1) {
+          posY += i;
         }
         direction = "down";
         moveCounter++;
@@ -62,14 +56,14 @@ public class Hero {
   public void heroMovementX(int i, int[][] matrix) {
     if (canMove) {
       if (i < 0) {
-        if (heroPosX >= 72 && matrix[heroPosX / 72 - 1][heroPosY / 72] != 1) {
-          heroPosX += i;
+        if (posX >= 72 && matrix[posX / 72 - 1][posY / 72] != 1) {
+          posX += i;
         }
         direction = "left";
         moveCounter++;
       } else {
-        if (heroPosX < 648 && matrix[heroPosX / 72 + 1][heroPosY / 72] != 1) {
-          heroPosX += i;
+        if (posX < 648 && matrix[posX / 72 + 1][posY / 72] != 1) {
+          posX += i;
         }
         direction = "right";
         moveCounter++;

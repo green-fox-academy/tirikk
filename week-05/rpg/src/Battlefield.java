@@ -10,11 +10,17 @@ public class Battlefield {
     boss.canMove = false;
   }
 
-  public void Strike() {
-    int SV = hero.SP * (2 * (int)(Math.random() * 6 + 1));
-    if (SV > boss.DP) {
-      boss.HP -= 
+  public void fight() {
+    while (boss.HP > 0) {
+      strike();
     }
+    hero.canMove = true;
   }
 
+  public void strike() {
+    int SV = hero.SP * (2 * (int)(Math.random() * 6 + 1));
+    if (SV > boss.DP) {
+      boss.HP -= (SV - boss.DP);
+    }
+  }
 }
