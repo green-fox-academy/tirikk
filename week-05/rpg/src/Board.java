@@ -39,6 +39,7 @@ public class Board extends JComponent implements KeyListener{
     }
     if (hero.moveCounter % 2 == 0) {
       matrix = boss.bossMovement(matrix);
+      matrix = monsters.monsterMovement(matrix);
     }
     repaint();
   }

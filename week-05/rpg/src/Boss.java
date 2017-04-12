@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Boss {
   private int monsterPosX = 0;
@@ -32,35 +33,44 @@ public class Boss {
 
   public int[][] bossMovement(int[][] matrix) {
     int canMove = 1;
+    int counter = 0;
+    ArrayList<Integer> directionsTried = new ArrayList<>();
     while (canMove > 0) {
       int direction = (int) (Math.random() * 4);
       if (direction == 0) {
-        if ((monsterPosY >= 72 && matrix[monsterPosX / 72][monsterPosY / 72 - 1] != 1)) {
+        if ((monsterPosY >= 72 && matrix[monsterPosX / 72][monsterPosY / 72 - 1] == 0)) {
           matrix[monsterPosX / 72][monsterPosY / 72 - 1] = 3;
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosY -= 72;
           canMove--;
+          directionsTried.add(direction);
         }
       } else if (direction == 1) {
-        if ((monsterPosY < 648 && matrix[monsterPosX / 72][monsterPosY / 72 + 1] != 1)) {
+        if ((monsterPosY < 648 && matrix[monsterPosX / 72][monsterPosY / 72 + 1] == 0)) {
           matrix[monsterPosX / 72][monsterPosY / 72 + 1] = 3;
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosY += 72;
           canMove--;
+          counter++;
+          directionsTried.add(direction);
         }
       } else if (direction == 2) {
-        if ((monsterPosX >= 72 && matrix[monsterPosX / 72 - 1][monsterPosY / 72] != 1)) {
+        if ((monsterPosX >= 72 && matrix[monsterPosX / 72 - 1][monsterPosY / 72] == 0)) {
           matrix[monsterPosX / 72 - 1][monsterPosY / 72] = 3;
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosX -= 72;
           canMove--;
+          counter++;
+          directionsTried.add(direction);
         }
       } else {
-        if ((monsterPosX < 648 && matrix[monsterPosX / 72 + 1][monsterPosY / 72] != 1)) {
+        if ((monsterPosX < 648 && matrix[monsterPosX / 72 + 1][monsterPosY / 72] == 0)) {
           matrix[monsterPosX / 72 + 1][monsterPosY / 72] = 3;
           matrix[monsterPosX / 72][monsterPosY / 72] = 0;
           monsterPosX += 72;
           canMove--;
+          counter++;
+          directionsTried.add(direction);
         }
       }
     }
