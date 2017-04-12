@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Map {
   int[][] matrix = new int[10][10];
+  int levelNo;
 
 //  public void mapGen() {
 //    for (int i = 0; i < 10; i++) {
@@ -33,6 +34,7 @@ public class Map {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    levelNo++;
     return matrix;
   }
 

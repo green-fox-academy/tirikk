@@ -1,10 +1,27 @@
 import java.awt.*;
 
 public class Hero {
-  private int heroPosX = 0;
-  private int heroPosY = 0;
+  private int heroPosX;
+  private int heroPosY;
   private String direction;
-  int moveCounter = 0;
+  int moveCounter;
+  int level;
+  int HP;
+  int DP;
+  int SP;
+  boolean hasKey;
+
+  Hero() {
+    heroPosX = 0;
+    heroPosY = 0;
+    direction = "down";
+    moveCounter = 0;
+    level = 1;
+    HP = 20 + 3 * (int)(Math.random() * 6 + 1);
+    DP = 2 * (int)(Math.random() * 6 + 1);
+    SP = 5 + (int)(Math.random() * 6 + 1);
+    hasKey = false;
+  }
 
   public void drawHero(Graphics g) {
     if (direction == "right") {
