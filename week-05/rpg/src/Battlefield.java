@@ -1,26 +1,34 @@
 public class Battlefield {
-  Hero hero;
-  Monster monster;
-  Boss boss;
+  Character attacker;
+  Character defender;
 
-  Battlefield(Hero hero, Boss boss) {
-    this.hero = hero;
-    this.boss = boss;
-    hero.canMove = false;
-    boss.canMove = false;
+  Battlefield(Character attacker, Character defender) {
+    this.attacker = attacker;
+    this.defender = defender;
+    attacker.canMove = false;
+    defender.canMove = false;
   }
 
-  public void fight() {
-    while (boss.HP > 0) {
-      strike();
+  public boolean fight() {
+    while (attacker.HP > 0 && defender.HP > 0) {
+      strike(attacker, defender);
+      if (defender.HP > 0) {
+        strike(defender, attacker);
+      }
     }
-    hero.canMove = true;
+    if (attacker.HP > 0) {
+      attacker.canMove = true;
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  public void strike() {
-    int SV = hero.SP * (2 * (int)(Math.random() * 6 + 1));
-    if (SV > boss.DP) {
-      boss.HP -= (SV - boss.DP);
+
+  public void strike(Character attacker, Character defender) {
+    int SV = attacker.SP * (2 * (int) (Math.random() * 6 + 1));
+    if (SV > defender.DP) {
+      defender.HP -= (SV - defender.DP);
     }
   }
 }

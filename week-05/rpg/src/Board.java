@@ -45,10 +45,11 @@ public class Board extends JComponent implements KeyListener {
     if (hero.posX == boss.posX && hero.posY == boss.posY) {
       Battlefield battlefield = new Battlefield(hero, boss);
       if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-        battlefield.fight();
-        matrix[boss.posX / 72][boss.posY / 72] = 0;
-        boss.posX = -72;
-        boss.posY = -72;
+        if (battlefield.fight()) {
+          matrix[boss.posX / 72][boss.posY / 72] = 0;
+          boss.posX = -72;
+          boss.posY = -72;
+        }
       }
     }
     repaint();
