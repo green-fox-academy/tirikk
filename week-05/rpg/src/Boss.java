@@ -16,8 +16,6 @@ public class Boss extends Character {
     DP = (int)((double) this.level / 2 * 3 * (Math.random() * 6 + 1) / 2);
     SP = this.level * (int) (Math.random() * 6 + 1);
     canMove = true;
-    posX = 144;
-    posY = 144;
   }
 
   public int[][] genBoss(int[][] matrix) {
@@ -48,7 +46,7 @@ public class Boss extends Character {
 
   public int[][] bossMovement(int[][] matrix) {
     ArrayList<Integer> directionsTried = new ArrayList<>();
-    while (canMove && posX >= 0) {
+    while (canMove && HP > 0) {
       int direction = (int) (Math.random() * 4);
       if (direction == 0) {
         if ((posY >= 72 && matrix[posX / 72][posY / 72 - 1] == 0)) {

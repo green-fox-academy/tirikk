@@ -36,19 +36,33 @@ public class Board extends JComponent implements KeyListener {
       hero.heroMovementX(-72, matrix);
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
       hero.heroMovementX(72, matrix);
+    } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+      System.exit(0);
     }
     if (hero.moveCounter % 2 == 0) {
       matrix = boss.bossMovement(matrix);
       matrix = monsters.monsterMovement(matrix);
     }
     repaint();
-    if (hero.posX == boss.posX && hero.posY == boss.posY) {
+    if (hero.posX == boss.posX && hero.posY == boss.posY && boss.HP > 0) {
       Battlefield battlefield = new Battlefield(hero, boss);
       if (e.getKeyCode() == KeyEvent.VK_SPACE) {
         if (battlefield.fight()) {
           matrix[boss.posX / 72][boss.posY / 72] = 0;
-          boss.posX = -72;
-          boss.posY = -72;
+        } else {
+          hero.canMove = false;
+        }
+      }
+    }
+    for (Monster monster : monsters.monsters) {
+      if (hero.posX == monster.posX && hero.posY == monster.posY && monster.HP > 0) {
+        Battlefield battlefield = new Battlefield(hero, monster);
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+          if (battlefield.fight()) {
+            matrix[monster.posX / 72][monster.posY / 72] = 0;
+          } else {
+            hero.canMove = false;
+          }
         }
       }
     }

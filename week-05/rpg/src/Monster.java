@@ -56,7 +56,7 @@ public class Monster extends Character {
   public int[][] monsterMovement(int[][] matrix) {
     for (Monster monster : monsters) {
       ArrayList<Integer> directionsTried = new ArrayList<>();
-      while (monster.canMove) {
+      while (monster.canMove && monster.HP > 0) {
         int direction = (int) (Math.random() * 4);
         if (direction == 0) {
           if ((monster.posY >= 72 && matrix[monster.posX / 72][monster.posY / 72 - 1] == 0)) {

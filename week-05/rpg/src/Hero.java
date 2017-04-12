@@ -2,6 +2,7 @@ import java.awt.*;
 import java.lang.*;
 
 public class Hero extends Character {
+  int maxHP;
   String direction;
   int moveCounter;
   boolean hasKey;
@@ -12,9 +13,10 @@ public class Hero extends Character {
     direction = "down";
     moveCounter = 0;
     level = 1;
-    HP = 20 + 3 * (int) (Math.random() * 6 + 1);
-    DP = 2 * (int) (Math.random() * 6 + 1);
-    SP = 5 + (int) (Math.random() * 6 + 1);
+    maxHP = 10 + 1 * (int) (Math.random() * 6 + 1);
+    HP = maxHP;
+    DP = 1 + (int) (Math.random() * 6 + 1);
+    SP = 1 + (int) (Math.random() * 6 + 1);
     hasKey = false;
     canMove = true;
   }

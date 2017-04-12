@@ -24,9 +24,8 @@ public class Battlefield {
     }
   }
 
-
   public void strike(Character attacker, Character defender) {
-    int SV = attacker.SP * (2 * (int) (Math.random() * 6 + 1));
+    int SV = attacker.SP + (2 * (int) (Math.random() * 6 + 1));
     if (SV > defender.DP) {
       defender.HP -= (SV - defender.DP);
     }
