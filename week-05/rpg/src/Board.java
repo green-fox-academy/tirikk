@@ -64,6 +64,7 @@ public class Board extends JComponent implements KeyListener {
         if (battlefield.fight()) {
           if (hero.hasKey) {
             hero.hasKey = false;
+            hero.levelUp();
             hero.posY = 0;
             hero.posX = 0;
             Main.main(hero, level + 1);
@@ -82,6 +83,7 @@ public class Board extends JComponent implements KeyListener {
             matrix[monster.posX / 72][monster.posY / 72] = 0;
             if (monster.hasKey) {
               if (boss.HP <= 0) {
+                hero.levelUp();
                 hero.posY = 0;
                 hero.posX = 0;
                 Main.main(hero, level + 1);

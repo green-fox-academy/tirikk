@@ -72,4 +72,12 @@ public class Hero extends Character {
       }
     }
   }
+
+  public void levelUp() {
+    level++;
+    maxHP += (int) (Math.random() * 6 + 1);
+    HP = maxHP;
+    DP += (int) (Math.random() * 6 + 1);
+    SP += (int) (Math.random() * 6 + 1);
+  }
 }
