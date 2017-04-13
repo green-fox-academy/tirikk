@@ -67,6 +67,7 @@ public class GameEngine extends JComponent implements KeyListener {
             hero.levelUp();
             hero.posY = 0;
             hero.posX = 0;
+            hero.direction = "down";
             Main.main(hero, level + 1);
           }
           matrix[boss.posX / 72][boss.posY / 72] = 0;
