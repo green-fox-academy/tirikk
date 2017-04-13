@@ -3,19 +3,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Map {
   int[][] matrix = new int[10][10];
   int levelNo;
-
-//  public void mapGen() {
-//    for (int i = 0; i < 10; i++) {
-//      for (int j = 0; j <10; j++) {
-//        matrix[i][j] = (int)(Math.random() * 2);
-//      }
-//    }
-//  }
 
   public int[][] getMapFromFile() {
     Path filePath = Paths.get("level1.txt");

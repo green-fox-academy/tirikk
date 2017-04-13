@@ -13,7 +13,7 @@ public class Boss extends Character {
       this.level = level + 2;
     }
     HP = 2 * this.level * (int) (Math.random() * 6 + 1) + (int) (Math.random() * 6 + 1);
-    DP = (int)((double) this.level / 2 * 3 * (Math.random() * 6 + 1) / 2);
+    DP = (int) ((double) this.level / 2 * 3 * (Math.random() * 6 + 1) / 2);
     SP = this.level * (int) (Math.random() * 6 + 1);
     canMove = true;
   }
@@ -26,6 +26,8 @@ public class Boss extends Character {
         matrix[column][row] = 3;
         posX = column * 72;
         posY = row * 72;
+      } else {
+        genBoss(matrix);
       }
     } else {
       genBoss(matrix);

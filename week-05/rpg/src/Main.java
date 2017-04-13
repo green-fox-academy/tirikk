@@ -7,13 +7,13 @@ public class Main {
 
     JFrame frame = new JFrame("RPG Game");
     frameList.add(frame);
-    Board board = new Board();
-    frame.add(board);
+    GameEngine gameEngine = new GameEngine();
+    frame.add(gameEngine);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
     frame.pack();
 
-    frame.addKeyListener(board);
+    frame.addKeyListener(gameEngine);
   }
 
   public static void main(Hero hero, int level) {
@@ -21,12 +21,12 @@ public class Main {
     frameList.add(frame);
     frameList.get(0).dispose();
     frameList.remove(0);
-    Board board = new Board(hero, level);
-    frame.add(board);
+    GameEngine gameEngine = new GameEngine(hero, level);
+    frame.add(gameEngine);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
     frame.pack();
 
-    frame.addKeyListener(board);
+    frame.addKeyListener(gameEngine);
   }
 }

@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Board extends JComponent implements KeyListener {
+public class GameEngine extends JComponent implements KeyListener {
   int level = 1;
   Map map = new Map();
   Hero hero = new Hero();
@@ -12,7 +12,7 @@ public class Board extends JComponent implements KeyListener {
   Boss boss = new Boss(level);
   HUD hud;
 
-  public Board() {
+  public GameEngine() {
     setPreferredSize(new Dimension(1100, 720));
     setVisible(true);
     matrix = monsters.genMonster(matrix, level);
@@ -20,7 +20,7 @@ public class Board extends JComponent implements KeyListener {
     hud = new HUD(hero, monsters, boss);
   }
 
-  public Board(Hero hero, int level) {
+  public GameEngine(Hero hero, int level) {
     this.level = level;
     setPreferredSize(new Dimension(1100, 720));
     setVisible(true);
