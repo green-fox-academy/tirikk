@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class GameEngine extends JComponent implements KeyListener {
   Hero hero = new Hero();
   Boss boss;
+  HUD hud;
   ArrayList<Character> toDraw = new ArrayList<>();
   ArrayList<Character> enemyList = new ArrayList<>();
   int level = 0;
@@ -32,6 +33,7 @@ public class GameEngine extends JComponent implements KeyListener {
     toDraw.add(boss);
     enemyList.add(boss);
     toDraw.add(hero);
+    hud = new HUD(hero, enemyList);
   }
 
   @Override
@@ -74,6 +76,6 @@ public class GameEngine extends JComponent implements KeyListener {
       PositionedImage image = new PositionedImage(character.image, character.posX, character.posY);
       image.draw(graphics);
     }
-
+    hud.drawHud(graphics);
   }
 }
