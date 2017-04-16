@@ -8,6 +8,7 @@ public class GameEngine extends JComponent implements KeyListener {
   Hero hero = new Hero();
   Boss boss;
   ArrayList<Character> toDraw = new ArrayList<>();
+  ArrayList<Character> enemyList = new ArrayList<>();
   int level = 0;
 
   public GameEngine() {
@@ -25,9 +26,11 @@ public class GameEngine extends JComponent implements KeyListener {
     Monster.generateMonsters(3, level);
     for (Monster skeleton : Monster.monsterList) {
       toDraw.add(skeleton);
+      enemyList.add(skeleton);
     }
     boss.generatePosition();
     toDraw.add(boss);
+    enemyList.add(boss);
     toDraw.add(hero);
   }
 
@@ -51,6 +54,14 @@ public class GameEngine extends JComponent implements KeyListener {
       hero.moveHeroRight();
     } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
       System.exit(0);
+    }
+
+    if (e.getKeyCode() != KeyEvent.VK_SPACE && e.getKeyCode() != KeyEvent.VK_ESCAPE && hero.moveCounter % 2 == 0) {
+      for (Character enemy : enemyList) {
+        if (enemy.canMove) {
+          enemy.moveRandom();
+        }
+      }
     }
 
     repaint();

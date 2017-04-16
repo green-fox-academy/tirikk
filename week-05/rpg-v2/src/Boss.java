@@ -17,6 +17,7 @@ public class Boss extends Character {
     dp = (int)Math.ceil((double)this.level / 2) * Dice.rollDice6() + (int)Math.ceil(Dice.rollDice6() / 2);
     sp = this.level * Dice.rollDice6() + this.level;
     canMove = true;
+    direction = generateDirection();
   }
 
   void generatePosition() {

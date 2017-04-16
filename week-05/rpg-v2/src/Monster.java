@@ -21,6 +21,7 @@ public class Monster extends Character {
     sp = this.level * Dice.rollDice6();
     canMove = true;
     hasKey = false;
+    direction = generateDirection();
   }
 
   static void generateMonsters(int n, int level) {
