@@ -43,4 +43,11 @@ public class Hero extends Character {
     image = "assets/hero-right.png";
     moveCounter++;
   }
+
+  void levelUp() {
+    level++;
+    maxHp += Dice.rollDice6();
+    dp += Dice.rollDice6();
+    sp += Dice.rollDice6();
+  }
 }

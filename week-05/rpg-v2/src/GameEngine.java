@@ -93,6 +93,7 @@ public class GameEngine extends JComponent implements KeyListener {
           hero.hasKey = true;
         }
         enemy.die();
+        hero.levelUp();
         it.remove();
         Map.setUnoccupied(enemy.posX / 72, enemy.posY / 72);
         hero.canMove = true;
