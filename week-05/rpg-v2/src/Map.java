@@ -27,4 +27,20 @@ public class Map {
       }
     }
   }
+
+  static boolean isFloor(int column, int row) {
+    return mapMatrix[row][column] != 1;
+  }
+
+  static boolean isOccupied(int column, int row) {
+    return mapMatrix[row][column] == 2;
+  }
+
+  static void setOccupied(int column, int row) {
+    mapMatrix[row][column] = 2;
+  }
+
+  static void setUnoccupied(int column, int row) {
+    mapMatrix[row][column] = 0;
+  }
 }
