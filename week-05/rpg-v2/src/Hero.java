@@ -50,4 +50,18 @@ public class Hero extends Character {
     dp += Dice.rollDice6();
     sp += Dice.rollDice6();
   }
+
+  void enterNextLevel() {
+    int i = Dice.rollDice10();
+    if (i < 6) {
+      hp += maxHp / 10;
+    } else if (i < 10) {
+      hp += maxHp / 3;
+    } else {
+      hp = maxHp;
+    }
+    if (hp > maxHp) {
+      hp = maxHp;
+    }
+  }
 }

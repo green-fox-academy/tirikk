@@ -24,6 +24,8 @@ public class GameEngine extends JComponent implements KeyListener {
     hero.posX = 0;
     hero.posY = 0;
     hero.image = "assets/hero-down.png";
+    toDraw.clear();
+    enemyList.clear();
     boss = new Boss(level);
     Monster.generateMonsters(3, level);
     for (Monster skeleton : Monster.monsterList) {
@@ -100,6 +102,11 @@ public class GameEngine extends JComponent implements KeyListener {
       }
     }
 
+    if (boss.hp == 0 && hero.hasKey) {
+      hero.hasKey = false;
+      hero.enterNextLevel();
+      generateElements();
+    }
     repaint();
   }
 
