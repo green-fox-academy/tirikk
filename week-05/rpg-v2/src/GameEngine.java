@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameEngine extends JComponent implements KeyListener {
+  Hero hero = new Hero();
+  Boss boss;
 
   public GameEngine() {
     setPreferredSize(new Dimension(1200, 720));
