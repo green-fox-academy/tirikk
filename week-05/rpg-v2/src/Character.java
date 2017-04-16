@@ -13,6 +13,27 @@ public class Character {
   String direction;
   boolean hasKey;
 
+  void fight(Character opponent) {
+    int sv = sp + 2 * Dice.rollDice6();
+    if (sv > opponent.dp) {
+      opponent.hp -= (sv - opponent.dp);
+    }
+    if (opponent.hp > 0) {
+      int oppSv = opponent.sp + 2 * Dice.rollDice6();
+      if (oppSv > dp) {
+        hp -= (oppSv - dp);
+      }
+    }
+  }
+
+  void die() {
+    hp = 0;
+    canMove = false;
+    Map.setUnoccupied(posX / 72, posY / 72);
+    image = "assets/blood.png";
+    hasKey = false;
+  }
+
   String generateDirection() {
     int i = (int) (Math.random() * 4);
     if (i == 0) {

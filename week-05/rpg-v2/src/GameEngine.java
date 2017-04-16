@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GameEngine extends JComponent implements KeyListener {
   Hero hero = new Hero();
@@ -46,23 +47,55 @@ public class GameEngine extends JComponent implements KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_UP) {
+    if (e.getKeyCode() == KeyEvent.VK_UP && hero.canMove) {
       hero.moveHeroUp();
-    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+    } else if (e.getKeyCode() == KeyEvent.VK_DOWN && hero.canMove) {
       hero.moveHeroDown();
-    } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+    } else if (e.getKeyCode() == KeyEvent.VK_LEFT && hero.canMove) {
       hero.moveHeroLeft();
-    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && hero.canMove) {
       hero.moveHeroRight();
     } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
       System.exit(0);
     }
 
-    if (e.getKeyCode() != KeyEvent.VK_SPACE && e.getKeyCode() != KeyEvent.VK_ESCAPE && hero.moveCounter % 2 == 0) {
+    if (e.getKeyCode() != KeyEvent.VK_SPACE && e.getKeyCode() != KeyEvent.VK_ESCAPE && hero.moveCounter % 2 == 0 &&
+            hero.canMove) {
       for (Character enemy : enemyList) {
         if (enemy.canMove) {
           enemy.moveRandom();
         }
+      }
+    }
+
+    for (Character enemy : enemyList) {
+      if (hero.posX == enemy.posX && hero.posY == enemy.posY && enemy.hp > 0) {
+        hero.canMove = false;
+        enemy.canMove = false;
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+          if (hero.moveCounter % 2 == 0) {
+            enemy.fight(hero);
+          } else {
+            hero.fight(enemy);
+          }
+        }
+      }
+    }
+
+    if (hero.hp <= 0) {
+      hero.die();
+    }
+
+    for (Iterator<Character> it = enemyList.iterator(); it.hasNext(); ) {
+      Character enemy = it.next();
+      if (enemy.hp <= 0) {
+        if (enemy.hasKey) {
+          hero.hasKey = true;
+        }
+        enemy.die();
+        it.remove();
+        Map.setUnoccupied(enemy.posX / 72, enemy.posY / 72);
+        hero.canMove = true;
       }
     }
 
