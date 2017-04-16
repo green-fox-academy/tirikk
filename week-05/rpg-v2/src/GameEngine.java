@@ -37,6 +37,7 @@ public class GameEngine extends JComponent implements KeyListener {
 
   @Override
   public void paint(Graphics graphics) {
+    Map.drawMap(graphics);
 
   }
 }
