@@ -42,13 +42,13 @@ public class GameEngine extends JComponent implements KeyListener {
   @Override
   public void keyReleased(KeyEvent e) {
     if (e.getKeyCode() == KeyEvent.VK_UP) {
-
+      hero.moveHeroUp();
     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-
+      hero.moveHeroDown();
     } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-
+      hero.moveHeroLeft();
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-
+      hero.moveHeroRight();
     } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
       System.exit(0);
     }

@@ -11,4 +11,36 @@ public class Hero extends Character {
     hasKey = false;
     moveCounter = 0;
   }
+
+  void moveHeroUp() {
+    if (posY >= 72 && Map.isFloor(posX / 72, posY / 72 - 1)) {
+      posY -= 72;
+    }
+    image = "assets/hero-up.png";
+    moveCounter++;
+  }
+
+  void moveHeroDown() {
+    if (posY < 648 && Map.isFloor(posX / 72, posY / 72 + 1)) {
+      posY += 72;
+    }
+    image = "assets/hero-down.png";
+    moveCounter++;
+  }
+
+  void moveHeroLeft() {
+    if (posX >= 72 && Map.isFloor(posX / 72 - 1, posY / 72)) {
+      posX -=72;
+    }
+    image = "assets/hero-left.png";
+    moveCounter++;
+  }
+
+  void moveHeroRight() {
+    if (posX < 648 && Map.isFloor(posX / 72 + 1, posY / 72)) {
+      posX +=72;
+    }
+    image = "assets/hero-right.png";
+    moveCounter++;
+  }
 }
