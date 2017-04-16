@@ -2,7 +2,7 @@ public class Boss extends Character {
 
   Boss(int level) {
     posX = 0;
-    posY = 72;
+    posY = 0;
     image = "assets/boss.png";
     int i = Dice.rollDice10();
     if (i < 5) {
@@ -17,5 +17,21 @@ public class Boss extends Character {
     dp = (int)Math.ceil((double)this.level / 2) * Dice.rollDice6() + (int)Math.ceil(Dice.rollDice6() / 2);
     sp = this.level * Dice.rollDice6() + this.level;
     canMove = true;
+  }
+
+  void generatePosition() {
+    int column = (int) (Math.random() * 10);
+    int row = (int) (Math.random() * 10);
+    if (column != 0 | row != 0) {
+      if (Map.isFloor(column, row) && !Map.isOccupied(column, row)) {
+        posX = column * 72;
+        posY = row * 72;
+        Map.setOccupied(column, row);
+      } else {
+        generatePosition();
+      }
+    } else {
+      generatePosition();
+    }
   }
 }

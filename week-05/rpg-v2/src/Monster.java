@@ -22,4 +22,23 @@ public class Monster extends Character {
     canMove = true;
     hasKey = false;
   }
+
+  static void generateMonsters(int n, int level) {
+    monsterList.clear();
+    int i = 0;
+    while (i < n) {
+      int column = (int) (Math.random() * 10);
+      int row = (int) (Math.random() * 10);
+      if (column != 0 | row != 0) {
+        if (Map.isFloor(column, row) && !Map.isOccupied(column, row)) {
+          monsterList.add(new Monster(level));
+          monsterList.get(i).posX = column * 72;
+          monsterList.get(i).posY = row * 72;
+          Map.setOccupied(column, row);
+          i++;
+        }
+      }
+    }
+    monsterList.get(1).hasKey = true;
+  }
 }

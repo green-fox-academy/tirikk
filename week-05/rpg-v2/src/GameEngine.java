@@ -22,6 +22,11 @@ public class GameEngine extends JComponent implements KeyListener {
     hero.posY = 0;
     hero.image = "assets/hero-down.png";
     boss = new Boss(level);
+    Monster.generateMonsters(3, level);
+    for (Monster skeleton : Monster.monsterList) {
+      toDraw.add(skeleton);
+    }
+    boss.generatePosition();
     toDraw.add(boss);
     toDraw.add(hero);
   }
