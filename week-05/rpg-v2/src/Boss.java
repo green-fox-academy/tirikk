@@ -2,7 +2,7 @@ public class Boss extends Character {
 
   Boss(int level) {
     posX = 0;
-    posY = 0;
+    posY = 72;
     image = "assets/boss.png";
     int i = Dice.rollDice10();
     if (i < 5) {
