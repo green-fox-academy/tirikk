@@ -1,10 +1,10 @@
-public class Reptile extends Animal {
+class Reptile extends Animal {
 
   Reptile(String name) {
-    this.name = name;
+    setName(name);
   }
 
-  void wantChild() {
-    System.out.println("wants a child from an egg!");
+  String wantChild() {
+    return "wants a child from an egg!";
   }
 }
