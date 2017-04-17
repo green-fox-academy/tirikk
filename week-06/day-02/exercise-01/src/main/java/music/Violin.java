@@ -1,18 +1,16 @@
 package main.java.music;
 
 public class Violin extends StringedInstrument {
-  String sound;
+  String sound = "Screech";
 
   public Violin() {
     name = "Violin";
     numberOfStrings = 4;
-    sound = "Screech";
   }
 
   public Violin(int i) {
     name = "Violin";
     numberOfStrings = i;
-    sound = "Screech";
   }
 
   public void play() {
