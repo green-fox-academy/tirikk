@@ -49,6 +49,7 @@ public class Hero extends Character {
     maxHp += Dice.rollDice6();
     dp += Dice.rollDice6();
     sp += Dice.rollDice6();
+    image = "assets/hero-levelup.png";
   }
 
   void enterNextLevel() {
