@@ -1,7 +1,7 @@
 class Bird extends Animal {
 
   Bird(String name) {
-    setName(name);
+    super(name);
   }
 
   String wantChild() {

@@ -1,8 +1,12 @@
 abstract class Animal {
   private String name;
-  int age;
-  String gender;
-  boolean hasLegs;
+  private int age;
+  private String gender;
+  private boolean hasLegs;
+
+  Animal(String name) {
+    this.name = name;
+  }
 
   void greet() {
     System.out.println("Hello");

@@ -1,7 +1,7 @@
 class Reptile extends Animal {
 
   Reptile(String name) {
-    setName(name);
+    super(name);
   }
 
   String wantChild() {

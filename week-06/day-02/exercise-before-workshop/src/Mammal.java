@@ -1,7 +1,7 @@
 class Mammal extends Animal {
 
   Mammal(String name) {
-    setName(name);
+    super(name);
   }
 
   String wantChild() {
