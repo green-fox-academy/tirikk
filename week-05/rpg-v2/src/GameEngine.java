@@ -37,8 +37,6 @@ public class GameEngine extends JComponent implements KeyListener {
     enemyList.add(boss);
     toDraw.add(hero);
     hud = new HUD(hero, enemyList);
-    Map.initMap();
-    Map.genPath(0, 0);
   }
 
   @Override
@@ -115,10 +113,10 @@ public class GameEngine extends JComponent implements KeyListener {
   @Override
   public void paint(Graphics graphics) {
     Map.drawMap(graphics);
-//    for (Character character : toDraw) {
-//      PositionedImage image = new PositionedImage(character.image, character.posX, character.posY);
-//      image.draw(graphics);
-//    }
-//    hud.drawHud(graphics);
+    for (Character character : toDraw) {
+      PositionedImage image = new PositionedImage(character.image, character.posX, character.posY);
+      image.draw(graphics);
+    }
+    hud.drawHud(graphics);
   }
 }
