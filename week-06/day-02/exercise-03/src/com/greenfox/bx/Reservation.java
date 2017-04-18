@@ -1,9 +1,5 @@
 package com.greenfox.bx;
-public interface Reservation {
 
-  String getDowBooking();
+public class Reservation {
 
-  String getCodeBooking();
-
-  String toString(); //format("Booking# %s for %s");
 }
