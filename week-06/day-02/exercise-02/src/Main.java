@@ -10,6 +10,6 @@ public class Main {
     System.out.println(charOp.subSequence(0, 4));
 
     System.out.println(string);
-    System.out.println(charOp.toString());
+    System.out.println(charOp);
   }
 }
