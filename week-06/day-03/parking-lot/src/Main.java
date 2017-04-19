@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
   public static void main(String[] args) {
@@ -10,31 +9,14 @@ public class Main {
     }
 
     for (Color color : Color.values()) {
-      System.out.println(color + " " + countByColor(cars, color));
+      System.out.println(color + " " + Count.countByColor(cars, color));
     }
 
     for (CarType type : CarType.values()) {
-      System.out.println(type + " " + countByType(cars, type));
+      System.out.println(type + " " + Count.countByType(cars, type));
     }
-  }
 
-  public static int countByColor(List<Car> cars, Color color) {
-    int number = 0;
-    for (Car car : cars) {
-      if (car.color == color) {
-        number++;
-      }
-    }
-    return number;
-  }
+    System.out.println("\n" + Count.countCombinations(cars));
 
-  public static int countByType(List<Car> cars, CarType type) {
-    int number = 0;
-    for (Car car : cars) {
-      if (car.type == type) {
-        number++;
-      }
-    }
-    return number;
   }
 }
