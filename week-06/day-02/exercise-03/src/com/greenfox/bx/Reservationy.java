@@ -5,5 +5,5 @@ public interface Reservationy {
 
   String getCodeBooking();
 
-  String toString(); //format("Booking# %s for %s");
+  String toString();
 }
