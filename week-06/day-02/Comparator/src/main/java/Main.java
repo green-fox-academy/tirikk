@@ -20,6 +20,4 @@ public class Main {
     Collections.sort(mentors, new LevelComparator());
     System.out.println(mentors.toString());
   }
-
-
 }
