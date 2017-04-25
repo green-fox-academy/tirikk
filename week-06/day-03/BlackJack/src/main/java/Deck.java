@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 class Deck {
-  List<Card> cards = new ArrayList<>();
+  private List<Card> cards = new ArrayList<>();
 
   Deck() {
     for (CardColor color : CardColor.values()) {
@@ -17,13 +17,13 @@ class Deck {
     Collections.shuffle(cards);
   }
 
-  Card pullFirst() {
+  Card pullBottom() {
     Card card = cards.get(0);
     cards.remove(0);
     return card;
   }
 
-  Card pullLast() {
+  Card pullTop() {
     Card card = cards.get(cards.size() - 1);
     cards.remove(cards.size() - 1);
     return card;
