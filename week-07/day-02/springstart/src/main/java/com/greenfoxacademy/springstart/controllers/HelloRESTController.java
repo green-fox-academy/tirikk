@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class HelloRESTController {
-  AtomicLong a1 = new AtomicLong();
+  private AtomicLong a1 = new AtomicLong();
 
   @RequestMapping("/greeting")
   public Greeting greeting(@RequestParam("name") String name) {
