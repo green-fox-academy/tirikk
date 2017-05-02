@@ -16,14 +16,17 @@ public class HelloWebController {
           "Guten Tag", "Gia'sou", "Aloha", "Shalom", "Namaste", "Namaste", "Jó napot", "Halló", "Helló", "Góðan daginn", "Halo", "Aksunai", "Qanuipit", "Dia dhuit",
           "Salve", "Ciao", "Kon-nichiwa", "An-nyong Ha-se-yo", "Salvëte", "Ni hao", "Dzien' dobry", "Olá", "Bunã ziua", "Zdravstvuyte", "Hola", "Jambo", "Hujambo", "Hej",
           "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem", "Sawubona"};
-
+  String[] colors = {"red", "blue", "yellow", "green", "grey", "crimson", "purple", "pink"};
 
   @RequestMapping("/web/greeting")
   public String greeting(Model model, @RequestParam("name") String name) {
     List<String> list = Arrays.asList(hellos);
+    model.addAttribute("colorLength", colors.length);
+    model.addAttribute("color", colors);
     model.addAttribute("hello", list);
     model.addAttribute("id", a1.getAndIncrement());
     model.addAttribute("name", name);
+    model.addAttribute("random", (int)(Math.random() * 40));
     return "greeting";
   }
 }
