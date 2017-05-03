@@ -1,10 +1,18 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>First Endpoint</title>
+    <title>Third Endpoint</title>
 </head>
 <body>
-<p th:each="bankAccount,accountStat : ${bankAccounts}" th:text="${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: ' + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
+<p th:each="bankAccount,accountStat : ${bankAccounts}"
+   th:if="${bankAccount.king} == true"
+   th:style="|color : gold|"
+   th:text="${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
+<p th:each="bankAccount,accountStat : ${bankAccounts}"
+   th:unless="${bankAccount.king} == true"
+   th:text="${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
 </body>
 </html>
