@@ -9,15 +9,21 @@ public class BankAccount {
   String balance;
   String animalType;
   boolean king;
+  boolean badGuy;
 
   public BankAccount(String name, String balance, String animalType) {
     this.name = name;
     this.balance = balance;
     this.animalType = animalType;
     this.king = false;
+    this.badGuy = false;
   }
 
   public void setKing() {
     king = true;
+  }
+
+  public void setBadGuy(boolean badGuy) {
+    this.badGuy = badGuy;
   }
 }

@@ -8,11 +8,15 @@
 <p th:each="bankAccount,accountStat : ${bankAccounts}"
    th:if="${bankAccount.king} == true"
    th:style="|color : gold|"
-   th:text="${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+   th:text="${bankAccount.badGuy} == true ? 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType} : 'Good One '
+    + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
     + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
 <p th:each="bankAccount,accountStat : ${bankAccounts}"
    th:unless="${bankAccount.king} == true"
-   th:text="${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+   th:text="${bankAccount.badGuy} == true ? 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType} : 'Good One '
+    + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
     + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
 </body>
 </html>
