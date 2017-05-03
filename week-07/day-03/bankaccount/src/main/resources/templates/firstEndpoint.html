@@ -5,6 +5,6 @@
     <title>First Endpoint</title>
 </head>
 <body>
-<p th:text="'Name: ' + ${bankAccount.name} + ', Balance: ' + ${bankAccount.balance} + ', Type: ' + ${bankAccount.animalType}"/>
+<p th:text="'Name: ' + ${bankAccount.name} + ', Balance: ' + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
 </body>
 </html>
