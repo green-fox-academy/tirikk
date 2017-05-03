@@ -5,18 +5,36 @@
     <title>Third Endpoint</title>
 </head>
 <body>
+<!--<p th:each="bankAccount,accountStat : ${bankAccounts}"-->
+<!--th:if="${bankAccount.king} == true"-->
+<!--th:style="|color : gold|"-->
+<!--th:text="${bankAccount.badGuy} == true ? 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '-->
+<!--+ ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType} : 'Good One '-->
+<!--+ ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '-->
+<!--+ ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>-->
+<!--<p th:each="bankAccount,accountStat : ${bankAccounts}"-->
+<!--th:unless="${bankAccount.king} == true"-->
+<!--th:text="${bankAccount.badGuy} == true ? 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '-->
+<!--+ ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType} : 'Good One '-->
+<!--+ ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '-->
+<!--+ ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>-->
+
 <p th:each="bankAccount,accountStat : ${bankAccounts}"
-   th:if="${bankAccount.king} == true"
-   th:style="|color : gold|"
-   th:text="${bankAccount.badGuy} == true ? 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
-    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType} : 'Good One '
-    + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+   th:if="${bankAccount.king} == true" th:style="|color : gold|"
+   th:switch="${bankAccount.badGuy}">
+    <span th:case="true" th:text=" 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
     + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
+    <span th:case="false" th:text=" 'Good One ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
+</p>
 <p th:each="bankAccount,accountStat : ${bankAccounts}"
    th:unless="${bankAccount.king} == true"
-   th:text="${bankAccount.badGuy} == true ? 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
-    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType} : 'Good One '
-    + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+   th:switch="${bankAccount.badGuy}">
+    <span th:case="true" th:text=" 'Bad Guy ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
     + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
+    <span th:case="false" th:text=" 'Good One ' + ${accountStat.index} + ' Name: ' + ${bankAccount.name} + ', Balance: '
+    + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + 'zebra, Type: ' + ${bankAccount.animalType}"/>
+</p>
+
 </body>
 </html>
