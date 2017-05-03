@@ -14,4 +14,10 @@ public class BankAccountController {
     model.addAttribute("bankAccount", simba);
     return "firstEndpoint";
   }
+
+  @RequestMapping("/Exercise4")
+  public String secondEndpoint(Model model) {
+    model.addAttribute("text", "This is an <em>HTML</em> text. <b>Enjoy yourself!</b>");
+    return "secondEndpoint";
+  }
 }
