@@ -6,15 +6,7 @@
 </head>
 <body>
 <table th:each="bankAccount,accountStat : ${bankAccounts}">
-    <tr th:if="${bankAccount.king}" th:style="|color : gold|" th:switch="${bankAccount.badGuy}">
-        <td th:text="${accountStat.index}"/>
-        <td th:case="true">Bad Guy</td>
-        <td th:case="false">Good One</td>
-        <td th:text="' Name: ' + ${bankAccount.name}"/>
-        <td th:text="' Balance: ' + ${#numbers.formatDecimal(bankAccount.balance, 4, 2)} + ' zebra'"/>
-        <td th:text="'  Type: ' + ${bankAccount.animalType}"/>
-    </tr>
-    <tr th:unless="${bankAccount.king}" th:switch="${bankAccount.badGuy}">
+    <tr th:style="${bankAccount.king} ? 'color : gold' : 'color : black'" th:switch="${bankAccount.badGuy}">
         <td th:text="${accountStat.index}"/>
         <td th:case="true">Bad Guy</td>
         <td th:case="false">Good One</td>
