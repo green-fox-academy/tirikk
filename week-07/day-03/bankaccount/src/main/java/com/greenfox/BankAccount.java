@@ -1,17 +1,16 @@
 package com.greenfox;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 public class BankAccount {
   String name;
-  String balance;
+  long balance;
   String animalType;
   boolean king;
   boolean badGuy;
 
-  public BankAccount(String name, String balance, String animalType) {
+  public BankAccount(String name, long balance, String animalType) {
     this.name = name;
     this.balance = balance;
     this.animalType = animalType;
