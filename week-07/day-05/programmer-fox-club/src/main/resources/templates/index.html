@@ -21,5 +21,11 @@
   </ul>
   <p th:if="${#lists.isEmpty(fox.listOfTricks)}" th:text="'Your pet does not know any tricks yet! Go learn some.'"/>
 </div>
+<div layout:fragment="content2" th:unless="${fox.alive}">
+  <p>Great! You KILLED your pet! Go stand in the corner!</p>
+  <form method="post" action="/revive">
+    <input type="submit" value="Buy a new one"/>
+  </form>
+</div>
 </body>
 </html>

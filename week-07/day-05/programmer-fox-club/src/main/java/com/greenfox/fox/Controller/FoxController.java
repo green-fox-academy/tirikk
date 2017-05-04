@@ -22,6 +22,11 @@ public class FoxController {
   public String addTrick(@RequestParam("trick") String trick) {
     fox.addTrick(trick);
     return "redirect:/";
+  }
 
+  @RequestMapping("/revive")
+  public String revive() {
+    fox.reset();
+    return "redirect:/";
   }
 }

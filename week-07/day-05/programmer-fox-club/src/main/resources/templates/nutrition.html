@@ -8,7 +8,7 @@
   <title>Nutrition Store</title>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" th:if="${fox.alive}">
   <form method="post" action="/changeDiet">
     <span>Food</span>
     <select name="food">
@@ -20,6 +20,9 @@
     </select>
     <input type="submit" value="Change"/>
   </form>
+</div>
+<div layout:fragment="content2" th:unless="${fox.alive}">
+  <p>It's not hungry, because it's DEAD!</p>
 </div>
 </body>
 </html>
