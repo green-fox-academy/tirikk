@@ -30,7 +30,6 @@ public class BankAccountController {
     List<BankAccount> bankAccounts = new ArrayList<>();
     BankAccount account1 = new BankAccount("Zordon", 2000, "lion");
     bankAccounts.add(account1);
-
     account1.setKing();
     account1.setBadGuy(true);
     BankAccount account2 = new BankAccount("Pumba", 3000, "warthog");
