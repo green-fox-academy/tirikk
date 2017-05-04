@@ -1,4 +1,5 @@
 package com.greenfox;
+import com.greenfox.colors.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,4 +10,10 @@ public class HelloWorldConfig {
   public HelloWorld helloWorld() {
     return new HelloWorld();
   }
+
+  @Bean
+  public RedColor redColor() {
+    return new RedColor();
+  }
+
 }
