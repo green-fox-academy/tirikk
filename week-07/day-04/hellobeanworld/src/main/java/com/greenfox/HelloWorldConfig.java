@@ -12,8 +12,13 @@ public class HelloWorldConfig {
   }
 
   @Bean
-  public RedColor redColor() {
+  public MyColor redColor() {
     return new RedColor();
+  }
+
+  @Bean
+  public MyColor blueColor() {
+    return new BlueColor();
   }
 
 }
