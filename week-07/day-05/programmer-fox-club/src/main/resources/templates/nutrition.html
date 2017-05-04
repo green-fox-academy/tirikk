@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Nutrition Store</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <form method="post" action="/changeDiet">
+    <span>Food</span>
+    <select name="food">
+      <option th:each="food : ${foodList}" th:value="${food}" th:text="${food}" th:selected="${fox.food} == ${food} ? true : false"/>
+    </select>
+    <span>Drink</span>
+    <select name="drink">
+      <option th:each="drink : ${drinkList}" th:value="${drink}" th:text="${drink}" th:selected="${fox.drink} == ${drink} ? true : false"/>
+    </select>
+    <input type="submit" value="Change"/>
+  </form>
+</div>
+</body>
+</html>

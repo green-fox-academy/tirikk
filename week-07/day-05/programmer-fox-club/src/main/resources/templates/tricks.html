@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Trick Center</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <form th:unless="${#lists.containsAll(fox.listOfTricks, trickList)}" method="post" action="/addTrick">
+    <span>Tricks</span>
+    <select name="trick">
+      <option th:each="trick : ${trickList}" th:unless="${#lists.contains(fox.listOfTricks, trick)}" th:value="${trick}" th:text="${trick}"/>
+    </select>
+    <input type="submit" value="Learn"/>
+  </form>
+  <p th:if="${#lists.containsAll(fox.listOfTricks, trickList)}" th:text="'Your pet has learned everything, so leave it alone already!'"/>
+</div>
+</body>
+</html>

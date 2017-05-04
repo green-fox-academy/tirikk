@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageProceeder {
-//  @Autowired
+  @Autowired
   private MessageService service;
 
-  @Autowired
+//  @Autowired
   MessageProceeder(MessageService service) {
     this.service = service;
   }
@@ -20,6 +20,7 @@ public class MessageProceeder {
   }
 
   public void processMessage(String message, String address) {
+
     System.out.printf("%s Sent to %s with Message= %s\n", service.sendMessage(), address, message);
   }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Information</title>
+</head>
+<body>
+<div layout:fragment="content" th:if="${fox.alive}">
+  <img src="greenfox.png" alt="FOX"/>
+  <p th:text="'This is ' + ${fox.name} + '. Currently living on ' + ${fox.food} + ' and ' + ${fox.drink} + '. It knows ' + ${#lists.size(fox.listOfTricks)} + ' tricks.'">
+    This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.
+  </p>
+  <h1>
+    Known tricks
+  </h1>
+  <ul th:unless="${#lists.isEmpty(fox.listOfTricks)}" th:each="trick : ${fox.listOfTricks}">
+    <li th:text="${trick}">write HTML</li>
+  </ul>
+  <p th:if="${#lists.isEmpty(fox.listOfTricks)}" th:text="'Your pet does not know any tricks yet! Go learn some.'"/>
+</div>
+</body>
+</html>
