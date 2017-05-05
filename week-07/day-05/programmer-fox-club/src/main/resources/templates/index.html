@@ -16,7 +16,7 @@
      + ${fox.drink} + ' (' + ${fox.drinkAmount} + '). It knows ' + ${#lists.size(fox.listOfTricks)} + ' tricks.'">
       This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.
     </p>
-    <p th:if="${fox.foodAmount == 0} or ${fox.drinkAmount == 0}" th:unless="${fox.vampire}">Your pet needs something to eat/drink!</p>
+    <p th:if="${fox.foodAmount == 0} or ${fox.drinkAmount == 0}" th:unless="${fox.vampire}" th:style="|color : red|">Your pet needs something to eat/drink!</p>
     <h1>
       Known tricks
     </h1>

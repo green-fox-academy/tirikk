@@ -53,7 +53,7 @@ public class Fox {
       }
     };
     final ScheduledFuture<?> decreaserHandle =
-            scheduler.scheduleAtFixedRate(decreaser, 2, 2, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(decreaser, 10, 2, TimeUnit.SECONDS);
   }
 
   public void reset() {
