@@ -32,13 +32,31 @@ public class FoxController {
 
   @RequestMapping("/finger")
   public String finger() {
-    fox.setImage("greenfox-finger.png");
+    if (!fox.isVampire()) {
+      fox.setImage("greenfox-finger.png");
+    } else {
+      fox.setImage("uncooperative-vampire.png");
+    }
     return "redirect:/";
   }
 
   @RequestMapping("/sit")
   public String sit() {
-    fox.setImage("greenfox.png");
+    if (!fox.isVampire()) {
+      fox.setImage("greenfox.png");
+    } else {
+      fox.setImage("uncooperative-vampire.png");
+    }
+    return "redirect:/";
+  }
+
+  @RequestMapping("/sing")
+  public String sing() {
+    if (!fox.isVampire()) {
+      fox.setImage("greenfox-sing.png");
+    } else {
+      fox.setImage("uncooperative-vampire.png");
+    }
     return "redirect:/";
   }
 }

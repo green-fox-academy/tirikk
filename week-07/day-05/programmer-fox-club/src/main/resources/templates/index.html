@@ -8,36 +8,38 @@
   <title>Information</title>
 </head>
 <body>
-  <div layout:fragment="content">
-    <img th:src="'img/' + ${fox.image}" alt="FOX"/>
-    <div th:if="${fox.alive}">
-      <p th:text="'This is ' + ${fox.name} + '. Currently living on ' + ${fox.food} + ' and ' + ${fox.drink} + '. It knows ' + ${#lists.size(fox.listOfTricks)} + ' tricks.'">
-        This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.
-      </p>
-      <h1>
-        Known tricks
-      </h1>
-      <ul th:unless="${#lists.isEmpty(fox.listOfTricks)}" th:each="trick : ${fox.listOfTricks}">
-        <li>
-          <a th:if="${trick == T(com.greenfox.fox.Enum.Trick).GIVE_FINGER}" href="/finger" th:text="${trick}"/>
-          <a th:if="${trick == T(com.greenfox.fox.Enum.Trick).SIT}" href="/sit" th:text="${trick}"/>
-          <span th:unless="${trick == T(com.greenfox.fox.Enum.Trick).GIVE_FINGER} or ${trick == T(com.greenfox.fox.Enum.Trick).SIT}" th:text="${trick}"/>
-        </li>
-      </ul>
-      <p th:if="${#lists.isEmpty(fox.listOfTricks)}" th:text="'Your pet does not know any tricks yet! Go learn some.'"/>
-      <h1>
-        Action history
-      </h1>
-      <ul th:each="action, actionStat : ${fox.actionHistory}">
-        <li th:if="${actionStat.index > #lists.size(fox.actionHistory) - 5}" th:text="${action}"></li>
-      </ul>
-    </div>
+<div layout:fragment="content">
+  <img th:src="'img/' + ${fox.image}" alt="FOX"/>
+  <div th:if="${fox.alive}">
+    <p th:text="'This is ' + ${fox.name} + '. Currently living on ' + ${fox.food} + ' and ' + ${fox.drink} + '. It knows ' + ${#lists.size(fox.listOfTricks)} + ' tricks.'">
+      This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.
+    </p>
+    <h1>
+      Known tricks
+    </h1>
+    <ul th:unless="${#lists.isEmpty(fox.listOfTricks)}" th:each="trick : ${fox.listOfTricks}">
+      <li>
+        <a th:if="${trick == T(com.greenfox.fox.Enum.Trick).GIVE_FINGER}" href="/finger" th:text="${trick}"/>
+        <a th:if="${trick == T(com.greenfox.fox.Enum.Trick).SIT}" href="/sit" th:text="${trick}"/>
+        <a th:if="${trick == T(com.greenfox.fox.Enum.Trick).SAY_RINGDINGDING}" href="/sing" th:text="${trick}"/>
+        <span th:unless="${trick == T(com.greenfox.fox.Enum.Trick).GIVE_FINGER} or ${trick == T(com.greenfox.fox.Enum.Trick).SIT} or
+        ${trick == T(com.greenfox.fox.Enum.Trick).SAY_RINGDINGDING}" th:text="${trick}"/>
+      </li>
+    </ul>
+    <p th:if="${#lists.isEmpty(fox.listOfTricks)}" th:text="'Your pet does not know any tricks yet! Go learn some.'"/>
+    <h1>
+      Action history
+    </h1>
+    <ul th:each="action, actionStat : ${fox.actionHistory}">
+      <li th:if="${actionStat.index > #lists.size(fox.actionHistory) - 5}" th:text="${action}"></li>
+    </ul>
   </div>
-  <div layout:fragment="content2" th:unless="${fox.alive}">
-    <p>Great! You KILLED your pet! Go stand in the corner!</p>
-    <form method="post" action="/revive">
-      <input type="submit" value="Buy a new one"/>
-    </form>
-  </div>
+</div>
+<div layout:fragment="content2" th:unless="${fox.alive}">
+  <p>Great! You KILLED your pet! Go stand in the corner!</p>
+  <form method="post" action="/revive">
+    <input type="submit" value="Buy a new one"/>
+  </form>
+</div>
 </body>
 </html>
