@@ -16,11 +16,13 @@ public class Fox {
   private Drink drink;
   private List<Trick> listOfTricks = new ArrayList<>();
   private boolean alive;
+  private String image;
 
   public Fox() {
     this.food = Food.STEAK;
     this.drink = Drink.WATER;
     alive = true;
+    image = "greenfox.png";
   }
 
   public void reset() {
@@ -28,6 +30,7 @@ public class Fox {
     this.drink = Drink.WATER;
     listOfTricks.clear();
     alive = true;
+    image = "greenfox.png";
   }
 
   public String getName() {
@@ -51,6 +54,7 @@ public class Fox {
     String[] deadly = {"Battery Acid", "Antifreeze"};
     if (Arrays.asList(deadly).contains(drink)) {
       this.alive = false;
+      this.image = "greenfox-dead.png";
     }
   }
 
@@ -64,5 +68,13 @@ public class Fox {
 
   public boolean isAlive() {
     return alive;
+  }
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
   }
 }

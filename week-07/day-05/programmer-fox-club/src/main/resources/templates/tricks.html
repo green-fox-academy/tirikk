@@ -8,18 +8,18 @@
   <title>Trick Center</title>
 </head>
 <body>
-<div layout:fragment="content" th:if="${fox.alive}">
-  <form th:unless="${#lists.containsAll(fox.listOfTricks, trickList)}" method="post" action="/addTrick">
-    <span>Tricks</span>
-    <select name="trick">
-      <option th:each="trick : ${trickList}" th:unless="${#lists.contains(fox.listOfTricks, trick)}" th:value="${trick}" th:text="${trick}"/>
-    </select>
-    <input type="submit" value="Learn"/>
-  </form>
-  <p th:if="${#lists.containsAll(fox.listOfTricks, trickList)}" th:text="'Your pet has learned everything, so leave it alone already!'"/>
-</div>
-<div layout:fragment="content2" th:unless="${fox.alive}">
-  <p>Nope, still dead.</p>
-</div>
+  <div layout:fragment="content" th:if="${fox.alive}">
+    <form th:unless="${#lists.containsAll(fox.listOfTricks, trickList)}" method="post" action="/addTrick">
+      <span>Tricks</span>
+      <select name="trick">
+        <option th:each="trick : ${trickList}" th:unless="${#lists.contains(fox.listOfTricks, trick)}" th:value="${trick}" th:text="${trick}"/>
+      </select>
+      <input type="submit" value="Learn"/>
+    </form>
+    <p th:if="${#lists.containsAll(fox.listOfTricks, trickList)}" th:text="'Your pet has learned everything, so leave it alone already!'"/>
+  </div>
+  <div layout:fragment="content2" th:unless="${fox.alive}">
+    <p>Nope, still dead.</p>
+  </div>
 </body>
 </html>

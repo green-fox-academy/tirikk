@@ -29,4 +29,16 @@ public class FoxController {
     fox.reset();
     return "redirect:/";
   }
+
+  @RequestMapping("/finger")
+  public String finger() {
+    fox.setImage("greenfox-finger.png");
+    return "redirect:/";
+  }
+
+  @RequestMapping("/sit")
+  public String sit() {
+    fox.setImage("greenfox.png");
+    return "redirect:/";
+  }
 }
