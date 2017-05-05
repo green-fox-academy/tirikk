@@ -10,12 +10,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class Fox {
+  private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
   private String name = "Mr.Fox";
   private Food food;
+  private int foodAmount;
   private Drink drink;
+  private int drinkAmount;
   private List<Trick> listOfTricks = new ArrayList<>();
   private boolean alive;
   private String image;
@@ -24,17 +31,37 @@ public class Fox {
 
   public Fox() {
     this.food = Food.STEAK;
+    foodAmount = 100;
+    drinkAmount = 100;
     this.drink = Drink.COKE;
     alive = true;
     vampire = false;
     image = "greenfox.png";
     addAction("init", "init");
+    decrease();
+  }
+
+  public void decrease() {
+    final Runnable decreaser = new Runnable() {
+      public void run() {
+        if (foodAmount > 0) {
+          foodAmount-=5;
+        }
+        if (drinkAmount > 0) {
+          drinkAmount-=5;
+        }
+      }
+    };
+    final ScheduledFuture<?> decreaserHandle =
+            scheduler.scheduleAtFixedRate(decreaser, 2, 2, TimeUnit.SECONDS);
   }
 
   public void reset() {
     this.food = Food.STEAK;
     this.drink = Drink.WATER;
     listOfTricks.clear();
+    foodAmount = 100;
+    drinkAmount = 100;
     alive = true;
     vampire = false;
     image = "greenfox.png";
@@ -43,6 +70,10 @@ public class Fox {
 
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public Food getFood() {
@@ -59,6 +90,7 @@ public class Fox {
     if (vampire && food.equals("Garlic")) {
       die();
     }
+    foodAmount += 100;
   }
 
   public Drink getDrink() {
@@ -74,6 +106,7 @@ public class Fox {
     } else if (alive && drink.equals("Blood")) {
       turn();
     }
+    drinkAmount += 100;
   }
 
   public List<Trick> getListOfTricks() {
@@ -105,13 +138,13 @@ public class Fox {
     String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM dd. hh:mm:ss"));
     if (type.equals("food") && !value.equals(getFood().toString())) {
       actionHistory.add(time + " : Food has been changed from: " + getFood() + " to: " + value);
-    } else if(type.equals("drink") && !value.equals(getDrink().toString())) {
+    } else if (type.equals("drink") && !value.equals(getDrink().toString())) {
       actionHistory.add(time + " : Drink has been changed from: " + getDrink() + " to: " + value);
-    } else if(type.equals("init")) {
+    } else if (type.equals("init")) {
       actionHistory.add(time + " : Got a fox");
-    } else if(type.equals("new")) {
+    } else if (type.equals("new")) {
       actionHistory.add(time + " : Got a new fox");
-    } else if(type.equals("trick")) {
+    } else if (type.equals("trick")) {
       actionHistory.add(time + " : Learned to: " + value);
     }
   }
@@ -128,5 +161,13 @@ public class Fox {
 
   public boolean isVampire() {
     return vampire;
+  }
+
+  public int getFoodAmount() {
+    return foodAmount;
+  }
+
+  public int getDrinkAmount() {
+    return drinkAmount;
   }
 }

@@ -4,16 +4,19 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="default">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8"
+        http-equiv="refresh" content="5"/>
   <title>Information</title>
 </head>
 <body>
 <div layout:fragment="content">
   <img th:src="'img/' + ${fox.image}" alt="FOX"/>
   <div th:if="${fox.alive}">
-    <p th:text="'This is ' + ${fox.name} + '. Currently living on ' + ${fox.food} + ' and ' + ${fox.drink} + '. It knows ' + ${#lists.size(fox.listOfTricks)} + ' tricks.'">
+    <p th:text="'This is ' + ${fox.name} + '. Currently living on ' + ${fox.food} + ' (' + ${fox.foodAmount} + ') and '
+     + ${fox.drink} + ' (' + ${fox.drinkAmount} + '). It knows ' + ${#lists.size(fox.listOfTricks)} + ' tricks.'">
       This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.
     </p>
+    <p th:if="${fox.foodAmount == 0} or ${fox.drinkAmount == 0}" th:unless="${fox.vampire}">Your pet needs something to eat/drink!</p>
     <h1>
       Known tricks
     </h1>
