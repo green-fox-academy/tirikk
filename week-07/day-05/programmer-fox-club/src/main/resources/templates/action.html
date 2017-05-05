@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Action History</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <ul th:each="action : ${fox.actionHistory}">
+      <li th:text="${action}"></li>
+    </ul>
+  </div>
+</body>
+</html>

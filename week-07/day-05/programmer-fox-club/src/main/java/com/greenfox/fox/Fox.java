@@ -5,6 +5,8 @@ import com.greenfox.fox.Enum.Food;
 import com.greenfox.fox.Enum.Trick;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,12 +19,15 @@ public class Fox {
   private List<Trick> listOfTricks = new ArrayList<>();
   private boolean alive;
   private String image;
+  private List<String> actionHistory = new ArrayList<>();
 
   public Fox() {
     this.food = Food.STEAK;
     this.drink = Drink.WATER;
     alive = true;
     image = "greenfox.png";
+    actionHistory.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM dd. hh:mm:ss")) + " : Got a " +
+            "fox");
   }
 
   public void reset() {
@@ -31,6 +36,9 @@ public class Fox {
     listOfTricks.clear();
     alive = true;
     image = "greenfox.png";
+    actionHistory.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM dd. hh:mm:ss")) + " : Got a " +
+            "new" +
+            " fox");
   }
 
   public String getName() {
@@ -42,6 +50,12 @@ public class Fox {
   }
 
   public void setFood(String food) {
+    if (!food.equals(getFood().toString())) {
+      actionHistory.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM dd. hh:mm:ss")) + " : Food" +
+              " has " +
+
+              "been changed from: " + getFood() + " to: " + food);
+    }
     this.food = Food.valueOf(food.toUpperCase().replace(" ", "_"));
   }
 
@@ -50,6 +64,11 @@ public class Fox {
   }
 
   public void setDrink(String drink) {
+    if (!drink.equals(getDrink().toString())) {
+      actionHistory.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM dd. hh:mm:ss")) + " : " +
+              "Drink has" +
+              " " + "been changed from: " + getDrink() + " to: " + drink);
+    }
     this.drink = Drink.valueOf(drink.toUpperCase().replace(" ", "_"));
     String[] deadly = {"Battery Acid", "Antifreeze"};
     if (Arrays.asList(deadly).contains(drink)) {
@@ -63,6 +82,9 @@ public class Fox {
   }
 
   public void addTrick(String trick) {
+    actionHistory.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM dd. hh:mm:ss")) + " : " +
+            "Learned " +
+            "to: " + trick);
     listOfTricks.add(Trick.valueOf(trick.toUpperCase().replace(" ", "_")));
   }
 
@@ -76,5 +98,9 @@ public class Fox {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  public List<String> getActionHistory() {
+    return actionHistory;
   }
 }

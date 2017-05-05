@@ -34,4 +34,10 @@ public class MainController {
     model.addAttribute("trickList", Trick.values());
     return "tricks";
   }
+
+  @RequestMapping("/actionHistory")
+  public String actionEndpoint(Model model) {
+    model.addAttribute("fox", fox);
+    return "action";
+  }
 }

@@ -25,6 +25,12 @@
         </li>
       </ul>
       <p th:if="${#lists.isEmpty(fox.listOfTricks)}" th:text="'Your pet does not know any tricks yet! Go learn some.'"/>
+      <h1>
+        Action history
+      </h1>
+      <ul th:each="action, actionStat : ${fox.actionHistory}">
+        <li th:if="${actionStat.index > #lists.size(fox.actionHistory) - 5}" th:text="${action}"></li>
+      </ul>
     </div>
   </div>
   <div layout:fragment="content2" th:unless="${fox.alive}">
