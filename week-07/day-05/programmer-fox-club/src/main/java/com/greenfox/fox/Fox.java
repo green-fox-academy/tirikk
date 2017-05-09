@@ -41,15 +41,13 @@ public class Fox {
     decrease();
   }
 
-  public void decrease() {
-    final Runnable decreaser = new Runnable() {
-      public void run() {
-        if (foodAmount > 0) {
-          foodAmount-=5;
-        }
-        if (drinkAmount > 0) {
-          drinkAmount-=5;
-        }
+  private void decrease() {
+    final Runnable decreaser = () -> {
+      if (foodAmount > 0) {
+        foodAmount-=5;
+      }
+      if (drinkAmount > 0) {
+        drinkAmount-=5;
       }
     };
     final ScheduledFuture<?> decreaserHandle =
