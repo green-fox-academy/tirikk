@@ -7,6 +7,10 @@
 </head>
 <body>
 <h1>Todos for today:</h1>
+<form method="post" action="/todo/add">
+  <input type="text" name="new_todo"/>
+  <input type="submit" value="submit"/>
+</form>
 <table>
   <tr>
     <th>ID</th>
@@ -19,6 +23,7 @@
     <td th:style="|border : 1px solid|" th:text="${todo}"/>
     <td th:style="|border : 1px solid|" th:text="${todo.done}"/>
     <td th:style="|border : 1px solid|" th:text="${todo.urgent}"/>
+    <td th:style="|border : 1px solid|"><a th:href="@{/todo/delete(toDelete=${todo.id})}">delete</a></td>
   </tr>
 </table>
 </body>

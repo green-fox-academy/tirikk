@@ -37,4 +37,16 @@ public class TodoController {
     }
     return "todo";
   }
+
+  @RequestMapping("/add")
+  public String add(@RequestParam(name = "new_todo") String new_todo) {
+    todoRepo.save(new Todo(new_todo));
+    return "redirect:/todo/";
+  }
+
+  @RequestMapping("/delete")
+  public String delete(@RequestParam(name = "toDelete") Todo toDelete) {
+    todoRepo.delete(toDelete);
+    return "redirect:/todo/";
+  }
 }
