@@ -5,6 +5,7 @@ import com.greenfox.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -54,6 +55,19 @@ public class TodoController {
   public String edit(Model model, @RequestParam(name = "id") long id) {
     model.addAttribute("todo", getTodo(id));
     return "edit";
+  }
+
+  @RequestMapping("/{id}/change")
+  public String save(@PathVariable(name = "id") String id,
+                     @RequestParam(name = "title") String title,
+                     @RequestParam(name = "urgent", required = false) String urgent,
+                     @RequestParam(name = "done", required = false) String done) {
+    Todo toChange = todoRepo.findOne(Long.valueOf(id));
+    toChange.setTitle(title);
+    toChange.setDone(done != null);
+    toChange.setUrgent(urgent != null);
+    todoRepo.save(toChange);
+    return "redirect:/todo/";
   }
 
   Todo getTodo(long i) {
