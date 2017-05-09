@@ -13,4 +13,16 @@ public class Todo {
   String title;
   boolean urgent = false;
   boolean done = false;
+
+  public Todo() {
+  }
+
+  public Todo(String title) {
+    this.title = title;
+  }
+
+  @Override
+  public String toString() {
+    return title;
+  }
 }
