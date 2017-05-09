@@ -49,4 +49,21 @@ public class TodoController {
     todoRepo.delete(toDelete);
     return "redirect:/todo/";
   }
+
+  @RequestMapping("/edit")
+  public String edit(Model model, @RequestParam(name = "id") long id) {
+    model.addAttribute("todo", getTodo(id));
+    return "edit";
+  }
+
+  Todo getTodo(long i) {
+    Iterable<Todo> list = todoRepo.findAll();
+    Todo want = new Todo();
+    for (Todo todo : list) {
+      if (todo.getId() == i) {
+        want = todo;
+      }
+    }
+    return want;
+  }
 }

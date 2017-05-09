@@ -24,6 +24,7 @@
     <td th:style="|border : 1px solid|" th:text="${todo.done}"/>
     <td th:style="|border : 1px solid|" th:text="${todo.urgent}"/>
     <td th:style="|border : 1px solid|"><a th:href="@{/todo/delete(toDelete=${todo.id})}">delete</a></td>
+    <td th:style="|border : 1px solid|"><a th:href="@{/todo/edit}">edit</a></td>
   </tr>
 </table>
 </body>
