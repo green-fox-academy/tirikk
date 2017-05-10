@@ -1,5 +1,7 @@
 package com.greenfox.logentries;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +22,7 @@ public class Log {
   }
 
   public Log(String endpoint, String data) {
-    createdAt = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
+    createdAt = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
     this.endpoint = endpoint;
     this.data = data;
   }

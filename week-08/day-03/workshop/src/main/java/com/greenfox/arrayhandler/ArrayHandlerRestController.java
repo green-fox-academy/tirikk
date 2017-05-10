@@ -2,7 +2,6 @@ package com.greenfox.arrayhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.greenfox.ErrorMessage;
 import com.greenfox.logentries.Log;
 import com.greenfox.logentries.LogRepository;
@@ -18,10 +17,10 @@ public class ArrayHandlerRestController {
 
   @RequestMapping(value = "/arrays")
   public Object arrayHandler(@RequestBody() Input input, HttpServletRequest request) {
-    ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+    ObjectMapper mapper = new ObjectMapper();
     String body = null;
     try {
-      body = ow.writeValueAsString(input);
+      body = mapper.writeValueAsString(input);
     } catch (JsonProcessingException e) {
       e.printStackTrace();
     }
