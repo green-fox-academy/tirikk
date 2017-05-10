@@ -1,13 +1,31 @@
 package com.greenfox.arrayhandler;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.greenfox.ErrorMessage;
+import com.greenfox.logentries.Log;
+import com.greenfox.logentries.LogRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class ArrayHandlerRestController {
+  @Autowired
+  LogRepository logRepo;
 
-  @RequestMapping(value = "/arrays", method = RequestMethod.POST)
-  public Object arrayHandler(@RequestBody() Input input) {
+  @RequestMapping(value = "/arrays")
+  public Object arrayHandler(@RequestBody() Input input, HttpServletRequest request) {
+    ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+    String body = null;
+    try {
+      body = ow.writeValueAsString(input);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+    logRepo.save(new Log(request.getRequestURI(), body));
     if (input.what.equals("sum")) {
       return new SumArray(input.numbers);
     } else if (input.what.equals("multiply")) {
