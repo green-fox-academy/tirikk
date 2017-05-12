@@ -24,6 +24,7 @@ public class Post {
     this.title = title;
     this.href = href;
     this.score = 0;
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public long getId() {
@@ -64,5 +65,13 @@ public class Post {
 
   public void setTimestamp(Timestamp timestamp) {
     this.timestamp = timestamp;
+  }
+
+  public void upvote() {
+    score++;
+  }
+
+  public void downvote() {
+    score--;
   }
 }
