@@ -1,14 +1,15 @@
 package com.greenfox.guardians.controller;
 
-import com.greenfox.guardians.model.Arrow;
-import com.greenfox.guardians.model.ErrorMessage;
-import com.greenfox.guardians.model.Translation;
+import com.greenfox.guardians.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GuardianController {
+  @Autowired
+  Cargo cargo;
 
   @GetMapping("/groot")
   public Object translate(@RequestParam(name = "message") String message) {
@@ -23,6 +24,21 @@ public class GuardianController {
     } else {
       return new Arrow(distance, time);
     }
+  }
+
+  @RequestMapping(value = "/rocket", method = RequestMethod.GET)
+  public Object shipCargo() {
+    return cargo;
+  }
+
+  @RequestMapping(value = "/rocket/fill", method = RequestMethod.GET)
+  public Object cargoFill(@RequestParam(name = "caliber") String caliber,
+                          @RequestParam(name = "amount") int amount) {
+    Status status = new Status(caliber, amount);
+    cargo.addAmmo(caliber, amount);
+    status.setShipstatus(cargo.getShipstatus());
+    status.setReady(cargo.isReady());
+    return status;
   }
 
   @ResponseStatus(code = HttpStatus.I_AM_A_TEAPOT)

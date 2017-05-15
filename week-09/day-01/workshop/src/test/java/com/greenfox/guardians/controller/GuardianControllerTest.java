@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = GuardiansApplication.class)
 @WebAppConfiguration
 @EnableWebMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class GuardianControllerTest {
   private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
           MediaType.APPLICATION_JSON.getSubtype(),
@@ -85,5 +87,50 @@ public class GuardianControllerTest {
             .andExpect(status().isIAmATeapot())
             .andExpect(content().contentType(contentType))
             .andExpect(jsonPath("$.error", is("I am Groot!")));
+  }
+
+  @Test
+  public void testRocket() throws Exception {
+    mockMvc.perform(get("/rocket"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.caliber25", is(0)))
+            .andExpect(jsonPath("$.caliber30", is(0)))
+            .andExpect(jsonPath("$.caliber50", is(0)))
+            .andExpect(jsonPath("$.shipstatus", is("empty")))
+            .andExpect(jsonPath("$.ready", is(false)));
+  }
+
+  @Test
+  public void testFill() throws Exception {
+    mockMvc.perform(get("/rocket/fill?caliber=.50&amount=5000"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.received", is(".50")))
+            .andExpect(jsonPath("$.amount", is(5000)))
+            .andExpect(jsonPath("$.shipstatus", is("40%")))
+            .andExpect(jsonPath("$.ready", is(false)));
+  }
+
+  @Test
+  public void testFillWithOverload() throws Exception {
+    mockMvc.perform(get("/rocket/fill?caliber=.50&amount=50000"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.received", is(".50")))
+            .andExpect(jsonPath("$.amount", is(50000)))
+            .andExpect(jsonPath("$.shipstatus", is("overloaded")))
+            .andExpect(jsonPath("$.ready", is(false)));
+  }
+
+  @Test
+  public void testFillWithFull() throws Exception {
+    mockMvc.perform(get("/rocket/fill?caliber=.30&amount=12500"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.received", is(".30")))
+            .andExpect(jsonPath("$.amount", is(12500)))
+            .andExpect(jsonPath("$.shipstatus", is("full")))
+            .andExpect(jsonPath("$.ready", is(true)));
   }
 }
