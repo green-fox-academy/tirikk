@@ -133,4 +133,12 @@ public class GuardianControllerTest {
             .andExpect(jsonPath("$.shipstatus", is("full")))
             .andExpect(jsonPath("$.ready", is(true)));
   }
+
+  @Test
+  public void testFillWithoutParams() throws Exception {
+    mockMvc.perform(get("/rocket/fill"))
+            .andExpect(status().isIAmATeapot())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.error", is("I am Groot!")));
+  }
 }
