@@ -2,23 +2,21 @@ package com.greenfox.guardians.controller;
 
 import com.greenfox.guardians.model.ErrorMessage;
 import com.greenfox.guardians.model.Translation;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class GuardianController {
 
-
-  @RequestMapping(name = "/groot", method = RequestMethod.GET)
+  @GetMapping("/groot")
   public Object translate(@RequestParam(name = "message") String message) {
     return new Translation(message);
   }
 
+  @ResponseStatus(code = HttpStatus.I_AM_A_TEAPOT)
   @ExceptionHandler(Exception.class)
   public Object handleAllException(Exception e) {
-    return new ErrorMessage("I am Groot");
+    return new ErrorMessage("I am Groot!");
   }
 }
