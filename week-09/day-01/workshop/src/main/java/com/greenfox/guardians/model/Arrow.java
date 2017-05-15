@@ -1,40 +1,40 @@
 package com.greenfox.guardians.model;
 
 public class Arrow {
-  long distance;
-  long time;
-  long speed;
+  double distance;
+  double time;
+  double speed;
 
   public Arrow() {
   }
 
-  public Arrow(long distance, long time) {
+  public Arrow(double distance, double time) {
     this.distance = distance;
     this.time = time;
     speed = distance / time;
   }
 
-  public long getDistance() {
+  public double getDistance() {
     return distance;
   }
 
-  public long getTime() {
+  public double getTime() {
     return time;
   }
 
-  public long getSpeed() {
+  public double getSpeed() {
     return speed;
   }
 
-  public void setDistance(long distance) {
+  public void setDistance(double distance) {
     this.distance = distance;
   }
 
-  public void setTime(long time) {
+  public void setTime(double time) {
     this.time = time;
   }
 
-  public void setSpeed(long speed) {
+  public void setSpeed(double speed) {
     this.speed = speed;
   }
 }

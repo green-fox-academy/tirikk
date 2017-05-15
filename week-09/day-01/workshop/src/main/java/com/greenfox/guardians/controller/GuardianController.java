@@ -15,10 +15,14 @@ public class GuardianController {
     return new Translation(message);
   }
 
-  @GetMapping("/yondu")
-  public Object arrowSpeed(@RequestParam(name = "distance") long distance,
-                           @RequestParam(name = "time") long time) {
-    return new Arrow(distance, time);
+  @RequestMapping(value = "/yondu", method = RequestMethod.GET)
+  public Object arrowSpeed(@RequestParam(name = "distance") double distance,
+                           @RequestParam(name = "time") double time) {
+    if (time == 0) {
+      return new ErrorMessage("Division by zero");
+    } else {
+      return new Arrow(distance, time);
+    }
   }
 
   @ResponseStatus(code = HttpStatus.I_AM_A_TEAPOT)
