@@ -4,7 +4,7 @@ public class Status {
   String received;
   int amount;
   String shipstatus;
-  boolean ready = false;
+  boolean ready;
 
   public Status() {
   }

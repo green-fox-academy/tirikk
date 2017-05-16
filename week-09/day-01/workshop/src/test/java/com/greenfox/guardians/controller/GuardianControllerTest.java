@@ -30,7 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = GuardiansApplication.class)
 @WebAppConfiguration
 @EnableWebMvc
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class GuardianControllerTest {
   private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
           MediaType.APPLICATION_JSON.getSubtype(),
@@ -102,6 +101,7 @@ public class GuardianControllerTest {
   }
 
   @Test
+  @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
   public void testFill() throws Exception {
     mockMvc.perform(get("/rocket/fill?caliber=.50&amount=5000"))
             .andExpect(status().isOk())
@@ -113,6 +113,7 @@ public class GuardianControllerTest {
   }
 
   @Test
+  @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
   public void testFillWithOverload() throws Exception {
     mockMvc.perform(get("/rocket/fill?caliber=.50&amount=50000"))
             .andExpect(status().isOk())
@@ -124,6 +125,7 @@ public class GuardianControllerTest {
   }
 
   @Test
+  @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
   public void testFillWithFull() throws Exception {
     mockMvc.perform(get("/rocket/fill?caliber=.30&amount=12500"))
             .andExpect(status().isOk())
