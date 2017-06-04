@@ -1,6 +1,11 @@
 package com.greenfox.guardians.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Food {
+  @Id
   String name;
   int amount;
   int calorie;

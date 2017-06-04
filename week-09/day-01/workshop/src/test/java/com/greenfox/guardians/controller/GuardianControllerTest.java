@@ -1,11 +1,16 @@
 package com.greenfox.guardians.controller;
 
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 import java.nio.charset.Charset;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.greenfox.guardians.model.Food;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +28,6 @@ import com.greenfox.guardians.GuardiansApplication;
 
 import static org.hamcrest.CoreMatchers.is;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -142,5 +146,44 @@ public class GuardianControllerTest {
             .andExpect(status().isIAmATeapot())
             .andExpect(content().contentType(contentType))
             .andExpect(jsonPath("$.error", is("I am Groot!")));
+  }
+
+  @Test
+  public void testDraxAddFood() throws Exception {
+    Food food = new Food();
+    food.setName("bread");
+    food.setAmount(10);
+    food.setCalorie(90);
+
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonInput = mapper.writeValueAsString(food);
+
+    mockMvc.perform(post("/drax/add")
+            .contentType(contentType)
+            .content(jsonInput))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Ok"));
+  }
+
+  @Test
+  public void testDraxList() throws Exception {
+    Food food = new Food();
+    food.setName("bread");
+    food.setAmount(10);
+    food.setCalorie(90);
+
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonInput = mapper.writeValueAsString(food);
+
+    mockMvc.perform(post("/drax/add")
+            .contentType(contentType)
+            .content(jsonInput));
+
+    mockMvc.perform(get("/drax"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].name", is("bread")))
+            .andExpect(jsonPath("$[0].amount", is(10)))
+            .andExpect(jsonPath("$[0].calorie", is(90)));
   }
 }

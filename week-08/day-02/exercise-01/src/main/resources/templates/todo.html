@@ -4,28 +4,35 @@
 <head>
   <meta charset="UTF-8"/>
   <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 </head>
-<body>
-<h1>Todos for today:</h1>
+<body class="container">
+<h1 class="text-center">Todos for today:</h1>
 <form method="post" action="/todo/add">
   <input type="text" name="new_todo"/>
   <input type="submit" value="submit"/>
 </form>
-<table>
+<table class="table table-hover">
+  <thead>
   <tr>
     <th>ID</th>
     <th>ACTION</th>
     <th>DONE</th>
     <th>URGENT</th>
+    <th/>
+    <th/>
   </tr>
+  </thead>
   <tr th:each="todo : ${todoRepo}">
-    <td th:style="|border : 1px solid|" th:text="${todo.id}"/>
-    <td th:style="|border : 1px solid|" th:text="${todo}"/>
-    <td th:style="|border : 1px solid|" th:text="${todo.done}"/>
-    <td th:style="|border : 1px solid|" th:text="${todo.urgent}"/>
-    <td th:style="|border : 1px solid|"><a th:href="@{/todo/delete(toDelete=${todo.id})}">delete</a></td>
-    <td th:style="|border : 1px solid|"><a th:href="@{/todo/edit(id=${todo.id})}">edit</a></td>
+    <td th:text="${todo.id}"/>
+    <td th:text="${todo}"/>
+    <td th:class="${todo.done} ? 'glyphicon glyphicon-ok' : 'glyphicon glyphicon-remove'"/>
+    <td class="glyphicon glyphicon-ok" />
+    <td><a th:href="@{/todo/delete(toDelete=${todo.id})}">delete</a></td>
+    <td><a th:href="@{/todo/edit(id=${todo.id})}">edit</a></td>
   </tr>
 </table>
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

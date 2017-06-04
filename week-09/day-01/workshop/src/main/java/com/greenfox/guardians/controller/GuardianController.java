@@ -1,5 +1,6 @@
 package com.greenfox.guardians.controller;
 
+import com.greenfox.guardians.Repository.FoodRepository;
 import com.greenfox.guardians.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,8 @@ import java.util.List;
 public class GuardianController {
   @Autowired
   Cargo cargo;
+  @Autowired
+  FoodRepository foodRepo;
 
   @GetMapping("/groot")
   public Object translate(@RequestParam(name = "message") String message) {
@@ -41,6 +44,31 @@ public class GuardianController {
     status.setShipstatus(cargo.getShipstatus());
     status.setReady(cargo.isReady());
     return status;
+  }
+
+  @RequestMapping(value = "/drax", method = RequestMethod.GET)
+  public Iterable<Food> getCalorieTable() {
+    return foodRepo.findAll();
+  }
+
+  @RequestMapping(value = "/drax/add", method = RequestMethod.POST)
+  public String addFood(@RequestBody() Food food) {
+    foodRepo.save(food);
+    return "Ok";
+  }
+
+  @RequestMapping(value = "/drax/remove", method = RequestMethod.POST)
+  public String removeFood(@RequestParam(name = "food") String food) {
+    foodRepo.delete(food);
+    return "Ok";
+  }
+
+  @RequestMapping(value = "/drax/{food}/edit", method = RequestMethod.POST)
+  public String editFood(@PathVariable(name = "food") String food, @RequestParam(name = "amount") int amount) {
+    Food toEdit = foodRepo.findOne(food);
+    toEdit.setAmount(amount);
+    foodRepo.save(toEdit);
+    return "Ok";
   }
 
   @ResponseStatus(code = HttpStatus.I_AM_A_TEAPOT)
