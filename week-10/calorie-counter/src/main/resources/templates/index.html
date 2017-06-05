@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Calorie Counter</title>
+</head>
+<body>
+<h1>Meals</h1>
+<p>
+  <span th:text="'Number of meals: ' + ${#lists.size(meals)}"/><br/>
+  <span th:text="'Total calories: ' + ${totalCals}"/>
+</p>
+<p>
+<form action="/add">
+  <input type="submit" value="Add new meal"/>
+</form>
+</p>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Calories</th>
+  </tr>
+  <tr th:each="meal : ${meals}">
+    <td th:style="|border : 1px solid|" th:text="${meal.date}"/>
+    <td th:style="|border : 1px solid|" th:text="${meal.type.name}"/>
+    <td th:style="|border : 1px solid|" th:text="${meal.description}"/>
+    <td th:style="|border : 1px solid|" th:text="${meal.calories}"/>
+    <td th:style="|border : 1px solid|"><a th:href="@{/add/__${meal.id}__}">Edit</a></td>
+    <td th:style="|border : 1px solid|"><a th:href="@{/delete(toDelete=${meal.id})}">Delete</a></td>
+  </tr>
+</table>
+</body>
+</html>
