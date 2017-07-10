@@ -8,7 +8,7 @@ public class Main {
     System.out.println(transformList(Arrays.asList("abc", "ijk", "xyz")));
   }
 
-  private static List<String> transformList(List<String> inputList) {
+  static List<String> transformList(List<String> inputList) {
     List<String> outputList = new ArrayList<>();
     for (int i = 0; i < inputList.size(); i++) {
       StringBuilder builder = new StringBuilder("");
